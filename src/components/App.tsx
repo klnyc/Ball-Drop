@@ -1,7 +1,7 @@
 import "../styles/App.css";
 import reactLogo from "/react.svg";
 import viteLogo from "/vite.svg";
-import Canvas from "./Canvas";
+import { Canvas } from "./Canvas";
 
 function App() {
   return (
