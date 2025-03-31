@@ -2,19 +2,24 @@ import "../styles/Canvas.css";
 import { useRef, useEffect, useState } from "react";
 import { getRandomNumber } from "../utility";
 
-const initialBasket = { x: 150, y: 350, width: 100, height: 20 };
+interface Basket {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 const initialBall = {
   x: getRandomNumber() * 300,
   y: 0,
-  width: 30,
-  height: 30,
+  radius: 10,
   speed: 0.2,
 };
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [gameOver, setGameOver] = useState(false);
-  const [basket, setBasket] = useState(initialBasket);
+  const [basket, setBasket] = useState<Basket>();
   const [ball, setBall] = useState(initialBall);
 
   const initiateCanvas = () => {
@@ -28,20 +33,32 @@ const Canvas = () => {
     canvas.height = canvas.offsetHeight;
     context.fillStyle = "#242424";
     context.fillRect(0, 0, canvas.width, canvas.height);
+
+    const initialBasket: Basket = {
+      x: canvas.width / 2,
+      y: canvas.height - 60,
+      width: 100,
+      height: 16,
+    };
+
+    setBasket(initialBasket);
   };
 
   const handleBasket = () => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    console.log("handle basket");
+    if (!canvas || gameOver) return;
+
     const handleMouse = (event: MouseEvent): void => {
       const rectangle = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rectangle.left;
 
-      setBasket((previousBasket) => ({
-        ...previousBasket,
-        x: mouseX - previousBasket.width / 2,
-      }));
+      setBasket(
+        (previousBasket) =>
+          previousBasket && {
+            ...previousBasket,
+            x: mouseX - previousBasket.width / 2,
+          }
+      );
     };
 
     canvas.addEventListener("mousemove", handleMouse);
@@ -54,8 +71,9 @@ const Canvas = () => {
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-    if (gameOver) return;
-    console.log("update");
+    if (gameOver || !basket) return;
+
+    console.log("update game");
 
     const resetBall = () => {
       setBall({ ...initialBall, x: getRandomNumber() * canvas.width });
@@ -68,11 +86,11 @@ const Canvas = () => {
 
     // if ball hits the basket
     if (
-      ball.y + ball.height >= basket.y &&
+      ball.y + ball.radius >= basket.y &&
       ball.x >= basket.x &&
       ball.x <= basket.x + basket.width
     ) {
-      console.log("hits floor");
+      console.log("hits basket");
       resetBall();
     }
 
@@ -83,7 +101,7 @@ const Canvas = () => {
     }
 
     const drawGame = () => {
-      console.log("drawing!");
+      console.log("draw game");
 
       context.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -92,7 +110,7 @@ const Canvas = () => {
 
       context.fillStyle = "red";
       context.beginPath();
-      context.arc(ball.x, ball.y, 10, 0, Math.PI * 2);
+      context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
       context.fill();
     };
 
@@ -110,7 +128,6 @@ const Canvas = () => {
 
   useEffect(() => {
     if (!gameOver) {
-      console.log("about to start");
       startGame();
     }
   }, [handleBasket, updateGame, gameOver]);
