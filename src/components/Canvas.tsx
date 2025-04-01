@@ -12,8 +12,8 @@ interface Basket {
 const initialBall = {
   x: getRandomNumber() * 300,
   y: 0,
-  radius: 10,
-  speed: 0.2,
+  radius: 30,
+  speed: 0.3, // starting speed
 };
 
 const Canvas = () => {
@@ -21,6 +21,9 @@ const Canvas = () => {
   const [gameOver, setGameOver] = useState(false);
   const [basket, setBasket] = useState<Basket>();
   const [ball, setBall] = useState(initialBall);
+
+  const ballImage = new Image();
+  ballImage.src = "/react.svg";
 
   const initiateCanvas = () => {
     const canvas = canvasRef.current;
@@ -76,7 +79,11 @@ const Canvas = () => {
     console.log("update game");
 
     const resetBall = () => {
-      setBall({ ...initialBall, x: getRandomNumber() * canvas.width });
+      setBall({
+        ...initialBall,
+        x: getRandomNumber() * canvas.width,
+        speed: ball.speed + 0.1, // increases speed after every cycle
+      });
     };
 
     setBall((previousBall) => ({
@@ -108,10 +115,7 @@ const Canvas = () => {
       context.fillStyle = "blue";
       context.fillRect(basket.x, basket.y, basket.width, basket.height);
 
-      context.fillStyle = "red";
-      context.beginPath();
-      context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-      context.fill();
+      context.drawImage(ballImage, ball.x, ball.y, ball.radius, ball.radius);
     };
 
     drawGame();
