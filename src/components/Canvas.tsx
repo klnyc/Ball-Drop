@@ -9,7 +9,14 @@ interface Basket {
   height: number;
 }
 
-const initialBall = {
+interface Ball {
+  x: number;
+  y: number;
+  radius: number;
+  speed: number;
+}
+
+const initialBall: Ball = {
   x: getRandomNumber() * 300,
   y: 0,
   radius: 30,
@@ -20,12 +27,12 @@ const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [basket, setBasket] = useState<Basket>();
-  const [ball, setBall] = useState(initialBall);
+  const [ball, setBall] = useState<Ball>(initialBall);
 
-  const ballImage = new Image();
+  const ballImage: HTMLImageElement = new Image();
   ballImage.src = "/react.svg";
 
-  const initiateCanvas = () => {
+  const initiateCanvas = (): void => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
@@ -41,13 +48,13 @@ const Canvas = () => {
       x: canvas.width / 2,
       y: canvas.height - 60,
       width: 100,
-      height: 16,
+      height: 12,
     };
 
     setBasket(initialBasket);
   };
 
-  const handleBasket = () => {
+  const handleBasket = (): (() => void) | undefined => {
     const canvas = canvasRef.current;
     if (!canvas || gameOver) return;
 
@@ -69,7 +76,7 @@ const Canvas = () => {
     return () => document.removeEventListener("mousemove", handleMouse);
   };
 
-  const updateGame = () => {
+  const updateGame = (): void => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const context = canvas.getContext("2d");
@@ -78,7 +85,7 @@ const Canvas = () => {
 
     console.log("update game");
 
-    const resetBall = () => {
+    const resetBall = (): void => {
       setBall({
         ...initialBall,
         x: getRandomNumber() * canvas.width,
@@ -107,12 +114,12 @@ const Canvas = () => {
       setGameOver(true);
     }
 
-    const drawGame = () => {
+    const drawGame = (): void => {
       console.log("draw game");
 
       context.clearRect(0, 0, canvas.width, canvas.height);
 
-      context.fillStyle = "blue";
+      context.fillStyle = "beige";
       context.fillRect(basket.x, basket.y, basket.width, basket.height);
 
       context.drawImage(ballImage, ball.x, ball.y, ball.radius, ball.radius);
@@ -121,7 +128,7 @@ const Canvas = () => {
     drawGame();
   };
 
-  const startGame = () => {
+  const startGame = (): void => {
     console.log("start game");
     updateGame();
     if (!gameOver) requestAnimationFrame(updateGame);
