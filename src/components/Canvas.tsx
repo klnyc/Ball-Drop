@@ -23,7 +23,13 @@ const initialBall: Ball = {
   speed: 0.3, // starting speed
 };
 
-const Canvas = () => {
+const Canvas = ({
+  score,
+  setScore,
+}: {
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const [basket, setBasket] = useState<Basket>();
@@ -105,6 +111,7 @@ const Canvas = () => {
       ball.x <= basket.x + basket.width
     ) {
       console.log("hits basket");
+      setScore(score + 1);
       resetBall();
     }
 
