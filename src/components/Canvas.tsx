@@ -1,6 +1,7 @@
 import "../styles/Canvas.css";
 import { useRef, useEffect, useState } from "react";
 import { getRandomNumber } from "../utility";
+import { MouseTracker } from "./MouseTracker";
 
 interface Basket {
   x: number;
@@ -118,12 +119,9 @@ const Canvas = () => {
 
     const drawGame = (): void => {
       console.log("draw game");
-
       context.clearRect(0, 0, canvas.width, canvas.height);
-
       context.fillStyle = "beige";
       context.fillRect(basket.x, basket.y, basket.width, basket.height);
-
       context.drawImage(ballImage, ball.x, ball.y, ball.radius, ball.radius);
     };
 
@@ -160,7 +158,7 @@ const Canvas = () => {
         <button onClick={handleStartGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
-        <div className="footer-item">Mouse coordinates</div>
+        <MouseTracker />
       </div>
     </>
   );
