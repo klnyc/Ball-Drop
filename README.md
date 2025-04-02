@@ -52,3 +52,6 @@ export default tseslint.config({
   },
 })
 ```
+
+Vite should be running on the latest version.
+Run `nvm use 23`

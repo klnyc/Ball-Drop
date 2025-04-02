@@ -32,7 +32,7 @@ const Canvas = () => {
   const [gameStart, setGameStart] = useState<boolean>(false);
 
   const ballImage: HTMLImageElement = new Image();
-  ballImage.src = "/react.svg";
+  ballImage.src = "/pokeball.svg";
 
   const initiateCanvas = (): void => {
     const canvas = canvasRef.current;
@@ -154,12 +154,13 @@ const Canvas = () => {
     <>
       <canvas ref={canvasRef} />
       <div id="footer">
-        <div className="footer-item">Score: {score}</div>
+        <div id="score" className="footer-item">Score: {score}</div>
         <button onClick={handleStartGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
         <MouseTracker />
       </div>
+
     </>
   );
 };

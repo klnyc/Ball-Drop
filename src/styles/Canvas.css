@@ -18,6 +18,10 @@ canvas {
   padding: 8px;
 }
 
+#score {
+  color: cyan;
+}
+
 #mouse-tracker {
   display: inline-flex;
   width: 210px;
