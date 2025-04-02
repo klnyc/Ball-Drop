@@ -87,18 +87,34 @@ const Canvas = () => {
 
     console.log("update game");
 
-    const resetBall = (): void => {
-      setBall({
-        ...initialBall,
-        x: getRandomNumber() * canvas.width,
-        speed: ball.speed + 0.1, // increases speed after every cycle
-      });
-    };
-
     setBall((previousBall) => ({
       ...previousBall,
       y: previousBall.y + previousBall.speed,
     }));
+
+    const getNewXCoordinate = (): number => {
+      let x: number = getRandomNumber() * canvas.width;
+
+      // make sure ball is fully visible on the left of the canvas
+      if (x < initialBall.radius) {
+        x = initialBall.radius;
+      }
+
+      // make sure ball is fully visible on the right of the canvas
+      if (x > canvas.width - initialBall.radius) {
+        x = canvas.width - initialBall.radius;
+      }
+
+      return x;
+    };
+
+    const resetBall = (): void => {
+      setBall({
+        ...initialBall,
+        x: getNewXCoordinate(),
+        speed: ball.speed + 0.1, // increases speed after every cycle
+      });
+    };
 
     // if ball hits the basket
     if (
@@ -154,13 +170,14 @@ const Canvas = () => {
     <>
       <canvas ref={canvasRef} />
       <div id="footer">
-        <div id="score" className="footer-item">Score: {score}</div>
+        <div id="score" className="footer-item">
+          Score: {score}
+        </div>
         <button onClick={handleStartGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
         <MouseTracker />
       </div>
-
     </>
   );
 };

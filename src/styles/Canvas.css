@@ -20,6 +20,8 @@ canvas {
 
 #score {
   color: cyan;
+  width: 210px;
+  text-align: left;
 }
 
 #mouse-tracker {
