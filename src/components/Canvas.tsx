@@ -138,6 +138,7 @@ const Canvas = () => {
 
   const handleStartGame = () => {
     console.log("handle start game");
+    setScore(0);
     setGameStart(true);
   };
 
@@ -155,7 +156,9 @@ const Canvas = () => {
       <canvas ref={canvasRef} />
       <div id="footer">
         <div id="score">Score: {score}</div>
-        <button onClick={handleStartGame}>Start Game</button>
+        <button onClick={handleStartGame} disabled={gameStart}>
+          {gameStart ? "Game started!" : "Start Game"}
+        </button>
         <div id="">Mouse coordinates</div>
       </div>
     </>
