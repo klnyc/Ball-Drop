@@ -136,9 +136,10 @@ const Canvas = () => {
     if (gameStart) requestAnimationFrame(updateGame);
   };
 
-  const handleStartGame = () => {
+  const handleStartGame = (): void => {
     console.log("handle start game");
     setScore(0);
+    setBall(initialBall);
     setGameStart(true);
   };
 
@@ -155,11 +156,11 @@ const Canvas = () => {
     <>
       <canvas ref={canvasRef} />
       <div id="footer">
-        <div id="score">Score: {score}</div>
+        <div className="footer-item">Score: {score}</div>
         <button onClick={handleStartGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
-        <div id="">Mouse coordinates</div>
+        <div className="footer-item">Mouse coordinates</div>
       </div>
     </>
   );

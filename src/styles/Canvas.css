@@ -11,9 +11,9 @@ canvas {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 8px;
+  padding-bottom: 8px;
 }
 
-#score {
+.footer-item {
   padding: 8px;
 }
