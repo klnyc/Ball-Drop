@@ -23,17 +23,12 @@ const initialBall: Ball = {
   speed: 0.3, // starting speed
 };
 
-const Canvas = ({
-  score,
-  setScore,
-}: {
-  score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
-}) => {
+const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [gameOver, setGameOver] = useState(false);
   const [basket, setBasket] = useState<Basket>();
   const [ball, setBall] = useState<Ball>(initialBall);
+  const [score, setScore] = useState<number>(0);
+  const [gameStart, setGameStart] = useState<boolean>(false);
 
   const ballImage: HTMLImageElement = new Image();
   ballImage.src = "/react.svg";
@@ -52,9 +47,9 @@ const Canvas = ({
 
     const initialBasket: Basket = {
       x: canvas.width / 2,
-      y: canvas.height - 60,
+      y: canvas.height - 80,
       width: 100,
-      height: 12,
+      height: 10,
     };
 
     setBasket(initialBasket);
@@ -62,7 +57,7 @@ const Canvas = ({
 
   const handleBasket = (): (() => void) | undefined => {
     const canvas = canvasRef.current;
-    if (!canvas || gameOver) return;
+    if (!canvas) return;
 
     const handleMouse = (event: MouseEvent): void => {
       const rectangle = canvas.getBoundingClientRect();
@@ -87,7 +82,7 @@ const Canvas = ({
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-    if (gameOver || !basket) return;
+    if (!gameStart || !basket) return;
 
     console.log("update game");
 
@@ -118,7 +113,7 @@ const Canvas = ({
     // if ball hits the ground
     if (ball.y > canvas.height) {
       console.log("you lose");
-      setGameOver(true);
+      setGameStart(false);
     }
 
     const drawGame = (): void => {
@@ -138,19 +133,33 @@ const Canvas = ({
   const startGame = (): void => {
     console.log("start game");
     updateGame();
-    if (!gameOver) requestAnimationFrame(updateGame);
+    if (gameStart) requestAnimationFrame(updateGame);
+  };
+
+  const handleStartGame = () => {
+    console.log("handle start game");
+    setGameStart(true);
   };
 
   useEffect(initiateCanvas, []);
   useEffect(handleBasket, []);
 
   useEffect(() => {
-    if (!gameOver) {
+    if (gameStart) {
       startGame();
     }
-  }, [handleBasket, updateGame, gameOver]);
+  }, [handleBasket, updateGame, gameStart]);
 
-  return <canvas ref={canvasRef} />;
+  return (
+    <>
+      <canvas ref={canvasRef} />
+      <div id="footer">
+        <div id="score">Score: {score}</div>
+        <button onClick={handleStartGame}>Start Game</button>
+        <div id="">Mouse coordinates</div>
+      </div>
+    </>
+  );
 };
 
 export { Canvas };

@@ -3,3 +3,17 @@ canvas {
   height: 100%;
   display: block;
 }
+
+#footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 8px;
+}
+
+#score {
+  padding: 8px;
+}
