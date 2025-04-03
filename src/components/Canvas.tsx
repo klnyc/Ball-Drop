@@ -2,6 +2,7 @@ import "../styles/Canvas.css";
 import { useRef, useEffect, useState } from "react";
 import { getRandomNumber } from "../utility";
 import { MouseTracker } from "./MouseTracker";
+import ballSvg from "../icons/pokeball.svg";
 
 interface Basket {
   x: number;
@@ -32,7 +33,7 @@ const Canvas = () => {
   const [gameStart, setGameStart] = useState<boolean>(false);
 
   const ballImage: HTMLImageElement = new Image();
-  ballImage.src = "/icons/pokeball.svg";
+  ballImage.src = ballSvg;
 
   const initiateCanvas = (): void => {
     const canvas = canvasRef.current;
