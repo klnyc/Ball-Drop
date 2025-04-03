@@ -1,6 +1,7 @@
 import "../styles/Canvas.css";
 import { useRef, useEffect, useState } from "react";
 import { getRandomNumber } from "../utility";
+import { GameOverAlert } from "./GameOverAlert";
 import { MouseTracker } from "./MouseTracker";
 import ballSvg from "../icons/pokeball.svg";
 
@@ -113,7 +114,7 @@ const Canvas = () => {
       setBall({
         ...initialBall,
         x: getNewXCoordinate(),
-        speed: ball.speed + 0.1, // increases speed after every cycle
+        speed: ball.speed + 0.08, // increases speed after every cycle
       });
     };
 
@@ -179,6 +180,10 @@ const Canvas = () => {
         </button>
         <MouseTracker />
       </div>
+
+      {/** ball.y is 0 on page load */}
+      {/** ball.y > 0 indicates that a game has started so the alert doesn't show on page load */}
+      {!gameStart && ball.y && <GameOverAlert />}
     </>
   );
 };

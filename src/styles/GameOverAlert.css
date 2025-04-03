@@ -1,0 +1,21 @@
+#game-over-alert {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  color: darksalmon;
+  font-size: 40px;
+  opacity: 0.6;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
