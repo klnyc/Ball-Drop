@@ -32,7 +32,7 @@ const Canvas = () => {
   const [gameStart, setGameStart] = useState<boolean>(false);
 
   const ballImage: HTMLImageElement = new Image();
-  ballImage.src = "/pokeball.svg";
+  ballImage.src = "/icons/pokeball.svg";
 
   const initiateCanvas = (): void => {
     const canvas = canvasRef.current;
