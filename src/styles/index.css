@@ -2,8 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-size: 14px;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: ghostwhite;
   background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,6 +24,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: ghostwhite;
 }
 
 button:hover {
@@ -34,17 +34,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
