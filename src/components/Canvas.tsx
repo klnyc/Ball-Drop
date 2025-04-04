@@ -23,7 +23,7 @@ const initialBall: Ball = {
   x: getRandomNumber() * 300,
   y: 0,
   radius: 30,
-  speed: 10, // starting speed
+  speed: 1, // starting speed
 };
 
 const basketWidth = 100;
@@ -35,6 +35,7 @@ const Canvas = () => {
   const [ball, setBall] = useState<Ball>(initialBall);
   const [score, setScore] = useState<number>(0);
   const [gameStart, setGameStart] = useState<boolean>(false);
+  const [timer, setTimer] = useState<number>(0);
 
   const ballImage: HTMLImageElement = new Image();
   ballImage.src = ballSvg;
@@ -166,10 +167,12 @@ const Canvas = () => {
   };
 
   const startGame = (): void => {
-    console.log("start game");
+    console.log("start game", ball);
     setScore(0);
+    setTimer(0);
     setBall(initialBall);
     setGameStart(true);
+    requestAnimationFrame(updateGame);
   };
 
   useEffect(initiateCanvas, []);
@@ -183,22 +186,33 @@ const Canvas = () => {
   }, [gameStart, ball, basket]);
 
   useEffect(() => {
+    let intervalId: number;
     if (gameStart) {
-      requestAnimationFrame(updateGame);
+      intervalId = setInterval(() => {
+        console.log("interval", timer);
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 100);
     }
-  }, [gameStart]);
+    return () => {
+      console.log("interval cleared", timer);
+      clearInterval(intervalId);
+    };
+  }, [gameStart, timer]);
 
   return (
     <>
       <canvas ref={canvasRef} />
       <div id="footer">
+        <MouseTracker />
         <div id="score" className="footer-item">
           Score: {score}
+        </div>
+        <div id="timer" className="footer-item">
+          Timer: {timer}
         </div>
         <button onClick={startGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
-        <MouseTracker />
       </div>
 
       {/** ball.y is 0 on page load */}
