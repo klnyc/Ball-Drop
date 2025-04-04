@@ -23,8 +23,11 @@ const initialBall: Ball = {
   x: getRandomNumber() * 300,
   y: 0,
   radius: 30,
-  speed: 0.3, // starting speed
+  speed: 10, // starting speed
 };
+
+const basketWidth = 100;
+const basketHeight = 10;
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -51,8 +54,8 @@ const Canvas = () => {
     const initialBasket: Basket = {
       x: canvas.width / 2,
       y: canvas.height - 80,
-      width: 100,
-      height: 10,
+      width: basketWidth,
+      height: basketHeight,
     };
 
     setBasket(initialBasket);
@@ -61,22 +64,22 @@ const Canvas = () => {
   const handleBasket = (): (() => void) | undefined => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const rectangle = canvas.getBoundingClientRect();
+    const basketWidthOffset = basketWidth / 2;
 
     const handleMouse = (event: MouseEvent): void => {
-      const rectangle = canvas.getBoundingClientRect();
       const mouseX = event.clientX - rectangle.left;
 
       setBasket(
         (previousBasket) =>
           previousBasket && {
             ...previousBasket,
-            x: mouseX - previousBasket.width / 2,
+            x: mouseX - basketWidthOffset,
           }
       );
     };
 
     canvas.addEventListener("mousemove", handleMouse);
-
     return () => document.removeEventListener("mousemove", handleMouse);
   };
 
@@ -85,38 +88,50 @@ const Canvas = () => {
     if (!canvas) return;
     const context = canvas.getContext("2d");
     if (!context) return;
-    if (!gameStart || !basket) return;
 
-    console.log("update game");
+    console.log("update game", gameStart);
 
     setBall((previousBall) => ({
       ...previousBall,
       y: previousBall.y + previousBall.speed,
     }));
 
-    const getNewXCoordinate = (): number => {
-      let x: number = getRandomNumber() * canvas.width;
+    requestAnimationFrame(updateGame);
+  };
 
-      // make sure ball is fully visible on the left of the canvas
-      if (x < initialBall.radius) {
-        x = initialBall.radius;
-      }
+  const getNewXCoordinate = (): number => {
+    const canvas = canvasRef.current;
+    if (!canvas) return 0;
+    let x: number = getRandomNumber() * canvas.width;
 
-      // make sure ball is fully visible on the right of the canvas
-      if (x > canvas.width - initialBall.radius) {
-        x = canvas.width - initialBall.radius;
-      }
+    // make sure ball is fully visible on the left of the canvas
+    if (x < initialBall.radius) {
+      x = initialBall.radius;
+    }
 
-      return x;
-    };
+    // make sure ball is fully visible on the right of the canvas
+    if (x > canvas.width - initialBall.radius) {
+      x = canvas.width - initialBall.radius;
+    }
 
-    const resetBall = (): void => {
-      setBall({
-        ...initialBall,
-        x: getNewXCoordinate(),
-        speed: ball.speed + 0.08, // increases speed after every cycle
-      });
-    };
+    return x;
+  };
+
+  const resetBall = (): void => {
+    setBall((previousBall) => ({
+      ...initialBall,
+      x: getNewXCoordinate(),
+      speed: previousBall.speed + 1, // increases speed after every cycle
+    }));
+  };
+
+  const checkBall = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
+    if (!context || !basket) return;
+
+    console.log("check ball");
 
     // if ball hits the basket
     if (
@@ -130,30 +145,28 @@ const Canvas = () => {
     }
 
     // if ball hits the ground
-    if (ball.y > canvas.height) {
+    if (ball.y >= canvas.height) {
       console.log("you lose");
       setGameStart(false);
     }
+  };
 
-    const drawGame = (): void => {
-      console.log("draw game");
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.fillStyle = "beige";
-      context.fillRect(basket.x, basket.y, basket.width, basket.height);
-      context.drawImage(ballImage, ball.x, ball.y, ball.radius, ball.radius);
-    };
+  const drawObjects = (): void => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const context = canvas.getContext("2d");
+    if (!context || !basket) return;
 
-    drawGame();
+    console.log("draw objects");
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.fillStyle = "beige";
+    context.fillRect(basket.x, basket.y, basket.width, basket.height);
+    context.drawImage(ballImage, ball.x, ball.y, ball.radius, ball.radius);
   };
 
   const startGame = (): void => {
     console.log("start game");
-    updateGame();
-    if (gameStart) requestAnimationFrame(updateGame);
-  };
-
-  const handleStartGame = (): void => {
-    console.log("handle start game");
     setScore(0);
     setBall(initialBall);
     setGameStart(true);
@@ -164,9 +177,16 @@ const Canvas = () => {
 
   useEffect(() => {
     if (gameStart) {
-      startGame();
+      drawObjects();
+      checkBall();
     }
-  }, [handleBasket, updateGame, gameStart]);
+  }, [gameStart, ball, basket]);
+
+  useEffect(() => {
+    if (gameStart) {
+      requestAnimationFrame(updateGame);
+    }
+  }, [gameStart]);
 
   return (
     <>
@@ -175,7 +195,7 @@ const Canvas = () => {
         <div id="score" className="footer-item">
           Score: {score}
         </div>
-        <button onClick={handleStartGame} disabled={gameStart}>
+        <button onClick={startGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
         <MouseTracker />
@@ -183,7 +203,7 @@ const Canvas = () => {
 
       {/** ball.y is 0 on page load */}
       {/** ball.y > 0 indicates that a game has started so the alert doesn't show on page load */}
-      {!gameStart && ball.y && <GameOverAlert />}
+      {!gameStart && ball.y > 0 && <GameOverAlert />}
     </>
   );
 };
