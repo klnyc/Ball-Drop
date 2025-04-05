@@ -23,7 +23,7 @@ const initialBall: Ball = {
   x: getRandomNumber() * 300,
   y: 0,
   radius: 30,
-  speed: 1, // starting speed
+  speed: 2, // starting speed
 };
 
 const basketWidth = 100;
@@ -31,20 +31,23 @@ const basketHeight = 10;
 
 const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animationRequestId = useRef<number | null>(null);
   const [basket, setBasket] = useState<Basket>();
   const [ball, setBall] = useState<Ball>(initialBall);
   const [score, setScore] = useState<number>(0);
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [timer, setTimer] = useState<number>(0);
 
+  const canvas = canvasRef.current;
+  const context = canvas?.getContext("2d");
+
   const ballImage: HTMLImageElement = new Image();
   ballImage.src = ballSvg;
 
   const initiateCanvas = (): void => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context) return;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
 
     // sets canvas dimensions to its parent container
     canvas.width = canvas.offsetWidth;
@@ -85,11 +88,6 @@ const Canvas = () => {
   };
 
   const updateGame = (): void => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context) return;
-
     console.log("update game", gameStart);
 
     setBall((previousBall) => ({
@@ -97,11 +95,10 @@ const Canvas = () => {
       y: previousBall.y + previousBall.speed,
     }));
 
-    requestAnimationFrame(updateGame);
+    animationRequestId.current = requestAnimationFrame(updateGame);
   };
 
   const getNewXCoordinate = (): number => {
-    const canvas = canvasRef.current;
     if (!canvas) return 0;
     let x: number = getRandomNumber() * canvas.width;
 
@@ -126,12 +123,8 @@ const Canvas = () => {
     }));
   };
 
-  const checkBall = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context || !basket) return;
-
+  const checkBall = (): void => {
+    if (!canvas || !basket || !gameStart) return;
     console.log("check ball");
 
     // if ball hits the basket
@@ -153,11 +146,7 @@ const Canvas = () => {
   };
 
   const drawObjects = (): void => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d");
-    if (!context || !basket) return;
-
+    if (!canvas || !context || !basket) return;
     console.log("draw objects");
 
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -167,16 +156,17 @@ const Canvas = () => {
   };
 
   const startGame = (): void => {
-    console.log("start game", ball);
+    console.log("start game");
     setScore(0);
     setTimer(0);
     setBall(initialBall);
     setGameStart(true);
-    requestAnimationFrame(updateGame);
   };
 
-  useEffect(initiateCanvas, []);
-  useEffect(handleBasket, []);
+  useEffect(() => {
+    initiateCanvas();
+    handleBasket();
+  }, []);
 
   useEffect(() => {
     if (gameStart) {
@@ -199,6 +189,18 @@ const Canvas = () => {
     };
   }, [gameStart, timer]);
 
+  useEffect(() => {
+    if (gameStart) {
+      animationRequestId.current = requestAnimationFrame(updateGame);
+    } else {
+      if (animationRequestId.current) {
+        console.log("canceling request ID", animationRequestId.current);
+        cancelAnimationFrame(animationRequestId.current);
+        animationRequestId.current = null;
+      }
+    }
+  }, [gameStart]);
+
   return (
     <>
       <canvas ref={canvasRef} />
@@ -215,8 +217,7 @@ const Canvas = () => {
         </button>
       </div>
 
-      {/** ball.y is 0 on page load */}
-      {/** ball.y > 0 indicates that a game has started so the alert doesn't show on page load */}
+      {/** ball.y starts at 0 on page load indicating the game has not started */}
       {!gameStart && ball.y > 0 && <GameOverAlert />}
     </>
   );
