@@ -5,9 +5,9 @@
   right: 0;
   margin-inline: auto;
   width: fit-content;
-  color: darksalmon;
+  color: #646cff;
   font-size: 40px;
-  opacity: 0.6;
+  opacity: 0.8;
   animation: pulse 2s infinite ease-in-out;
 }
 

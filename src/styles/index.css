@@ -3,7 +3,21 @@
   line-height: 1.5;
   font-size: 14px;
   color: ghostwhite;
-  background-color: #242424;
+  background-image: linear-gradient(
+    to top,
+    #242424,
+    #403a44,
+    #644f61,
+    #8e6479,
+    #bc798b,
+    #d08391,
+    #e48e96,
+    #f79999,
+    #f79999,
+    #f79999,
+    #f79999,
+    #f79999
+  );
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

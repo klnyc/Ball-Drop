@@ -52,7 +52,7 @@ const Canvas = () => {
     // sets canvas dimensions to its parent container
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    context.fillStyle = "#242424";
+    context.fillStyle = "transparent";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     const initialBasket: Basket = {
