@@ -181,7 +181,7 @@ const Canvas = () => {
       intervalId = setInterval(() => {
         console.log("interval", timer);
         setTimer((prevTimer) => prevTimer + 1);
-      }, 100);
+      }, 1000);
     }
     return () => {
       console.log("interval cleared", timer);
@@ -207,10 +207,10 @@ const Canvas = () => {
       <div id="footer">
         <MouseTracker />
         <div id="score" className="footer-item">
-          Score: {score}
+          Score: <span>{score}</span>
         </div>
         <div id="timer" className="footer-item">
-          Timer: {timer}
+          Timer: <span>{timer}s</span>
         </div>
         <button onClick={startGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}

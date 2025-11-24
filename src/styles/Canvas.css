@@ -23,6 +23,14 @@ canvas {
   width: 210px;
 }
 
+#score span {
+  color: lightcoral;
+}
+
+#timer span {
+  color: #646cff;
+}
+
 #mouse-tracker {
   display: inline-flex;
   width: 210px;
@@ -42,4 +50,10 @@ canvas {
 
 .smaller-coordinate {
   color: #646cff;
+}
+
+@media only screen and (max-width: 720px) {
+  #mouse-tracker {
+    display: none;
+  }
 }
