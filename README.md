@@ -3,7 +3,7 @@
 https://klnyc.github.io/Playbox/
 
 Available games:
-* Ball drop
+* Ball Drop
 * Sudoku
 
 ## :hammer_and_pick: Technology Stack
@@ -11,6 +11,7 @@ Available games:
 * React
 * Typescript
 * Vite
+* CSS
 
 ## :notebook_with_decorative_cover: Notes
 
