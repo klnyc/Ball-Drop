@@ -1,7 +1,8 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", "Roboto", sans-serif;
   line-height: 1.5;
   font-size: 14px;
+  letter-spacing: 1px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +14,49 @@ body {
   height: 100%;
 }
 
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 8px;
+  margin: 0 8px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: inherit;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  border-color: var(--color-purple);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
 #app {
+  --color-white: ghostwhite;
+  --color-purple: #646cff;
+  --color-coral: lightcoral;
+
   height: 100vh;
   width: 100%;
+  background-image: linear-gradient(
+    to top,
+    #242424,
+    #403a44,
+    #644f61,
+    #8e6479,
+    #bc798b,
+    #d08391,
+    #e48e96,
+    #f79999,
+    #f79999,
+    #f79999,
+    #f79999,
+    #f79999
+  );
 }

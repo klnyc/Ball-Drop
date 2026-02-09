@@ -5,9 +5,9 @@ import { Link } from "react-router";
 const Home = (): JSX.Element => {
   return (
     <div id="home-container">
-      Home
+      <div id="playbox-title">Playbox</div>
       <Link to="/balldrop">
-        <button>Go to Ball Drop</button>
+        <button>Ball Drop</button>
       </Link>
     </div>
   );

@@ -193,8 +193,7 @@ const BallDrop = (): JSX.Element => {
 
   return (
     <div id="ball-drop-container">
-      <canvas ref={canvasRef} />
-
+      <canvas id="ball-drop-canvas" ref={canvasRef} />
       <div id="footer">
         <Link to="/">
           <button id="back-to-playbox-button">Back to Playbox</button>
