@@ -1,7 +1,7 @@
 import "../BallDrop.css";
 import { useRef, useEffect, useState, JSX } from "react";
 import { Link } from "react-router";
-import { getRandomNumber } from "../utility";
+import { getRandomNumber } from "../../utility";
 import { GameOverAlert } from "./GameOverAlert";
 import { MouseTracker } from "./MouseTracker";
 import ballSvg from "../assets/pokeball.svg";
@@ -196,7 +196,7 @@ const BallDrop = (): JSX.Element => {
       <canvas id="ball-drop-canvas" ref={canvasRef} />
       <div id="footer">
         <Link to="/">
-          <button id="back-to-playbox-button">Back to Playbox</button>
+          <button className="back-to-playbox-button">Back to Playbox</button>
         </Link>
         <MouseTracker />
         <div id="score" className="footer-item">
@@ -205,7 +205,7 @@ const BallDrop = (): JSX.Element => {
         <div id="timer" className="footer-item">
           Timer: <span>{timer}s</span>
         </div>
-        <button id="start-game-button" onClick={startGame} disabled={gameStart}>
+        <button id="start-ball-drop-button" onClick={startGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
       </div>

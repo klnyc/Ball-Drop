@@ -7,6 +7,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-white: ghostwhite;
+  --color-black: #454544;
+  --color-purple: #646cff;
+  --color-coral: lightcoral;
 }
 
 body {
@@ -24,7 +29,7 @@ button {
   background-color: transparent;
   cursor: pointer;
   transition: border-color 0.25s;
-  color: inherit;
+  color: var(--color-white);
   letter-spacing: 1px;
 }
 
@@ -37,11 +42,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-#app {
-  --color-white: ghostwhite;
-  --color-purple: #646cff;
-  --color-coral: lightcoral;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
 
+#app {
   height: 100vh;
   width: 100%;
   background-image: linear-gradient(
@@ -59,4 +68,8 @@ button:focus-visible {
     #f79999,
     #f79999
   );
+}
+
+.back-to-playbox-button {
+  color: var(--color-coral);
 }

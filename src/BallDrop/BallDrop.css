@@ -9,12 +9,8 @@
   height: 100%;
 }
 
-#start-game-button {
+#start-ball-drop-button {
   color: var(--color-purple);
-}
-
-#back-to-playbox-button {
-  color: var(--color-coral);
 }
 
 #footer {
@@ -42,7 +38,6 @@
 
 #mouse-tracker {
   display: inline-flex;
-  width: 210px;
 }
 
 #mouse-tracker div {

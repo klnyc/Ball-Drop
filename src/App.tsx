@@ -2,6 +2,7 @@ import { JSX } from "react";
 import { HashRouter, Routes, Route } from "react-router";
 import Home from "./Home/components/Home";
 import BallDrop from "./BallDrop/components/BallDrop";
+import Sudoku from "./Sudoku/components/Sudoku";
 
 const App = (): JSX.Element => {
   return (
@@ -10,6 +11,7 @@ const App = (): JSX.Element => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/balldrop" element={<BallDrop />} />
+          <Route path="/sudoku" element={<Sudoku />} />
         </Routes>
       </HashRouter>
     </div>

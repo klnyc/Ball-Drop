@@ -1,6 +1,10 @@
-#  Playbox
+# Playbox
 
 https://klnyc.github.io/Playbox/
+
+Available games:
+* Ball drop
+* Sudoku
 
 ## :hammer_and_pick: Technology Stack
 
