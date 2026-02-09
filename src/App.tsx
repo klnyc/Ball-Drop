@@ -1,10 +1,9 @@
-import "../styles/App.css";
-import { Canvas } from "./Canvas";
+import { BallDrop } from "./BallDrop/components/BallDrop";
 
 function App() {
   return (
     <div id="app">
-      <Canvas />
+      <BallDrop />
     </div>
   );
 }

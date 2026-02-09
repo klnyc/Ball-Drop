@@ -1,9 +1,9 @@
-import "../styles/Canvas.css";
+import "../BallDrop.css";
 import { useRef, useEffect, useState } from "react";
 import { getRandomNumber } from "../utility";
 import { GameOverAlert } from "./GameOverAlert";
 import { MouseTracker } from "./MouseTracker";
-import ballSvg from "../icons/pokeball.svg";
+import ballSvg from "../assets/pokeball.svg";
 
 interface Basket {
   x: number;
@@ -29,7 +29,7 @@ const initialBall: Ball = {
 const basketWidth = 100;
 const basketHeight = 10;
 
-const Canvas = () => {
+const BallDrop = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRequestId = useRef<number | null>(null);
   const [basket, setBasket] = useState<Basket>();
@@ -191,7 +191,7 @@ const Canvas = () => {
   }, [gameStart]);
 
   return (
-    <>
+    <div id="ball-drop-container">
       <canvas ref={canvasRef} />
       <div id="footer">
         <MouseTracker />
@@ -208,8 +208,8 @@ const Canvas = () => {
 
       {/** ball.y starts at 0 on page load indicating the game has not started */}
       {!gameStart && ball.y > 0 && <GameOverAlert />}
-    </>
+    </div>
   );
 };
 
-export { Canvas };
+export { BallDrop };

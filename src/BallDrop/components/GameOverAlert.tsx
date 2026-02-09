@@ -1,4 +1,3 @@
-import "../styles/GameOverAlert.css";
 import { useEffect, useState } from "react";
 
 const duration = 2_000; // match CSS pulse animation duration
