@@ -1,5 +1,6 @@
 import "../BallDrop.css";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, JSX } from "react";
+import { Link } from "react-router";
 import { getRandomNumber } from "../utility";
 import { GameOverAlert } from "./GameOverAlert";
 import { MouseTracker } from "./MouseTracker";
@@ -29,7 +30,7 @@ const initialBall: Ball = {
 const basketWidth = 100;
 const basketHeight = 10;
 
-const BallDrop = () => {
+const BallDrop = (): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRequestId = useRef<number | null>(null);
   const [basket, setBasket] = useState<Basket>();
@@ -193,7 +194,11 @@ const BallDrop = () => {
   return (
     <div id="ball-drop-container">
       <canvas ref={canvasRef} />
+
       <div id="footer">
+        <Link to="/">
+          <button id="back-to-playbox-button">Back to Playbox</button>
+        </Link>
         <MouseTracker />
         <div id="score" className="footer-item">
           Score: <span>{score}</span>
@@ -201,7 +206,7 @@ const BallDrop = () => {
         <div id="timer" className="footer-item">
           Timer: <span>{timer}s</span>
         </div>
-        <button onClick={startGame} disabled={gameStart}>
+        <button id="start-game-button" onClick={startGame} disabled={gameStart}>
           {gameStart ? "Game started!" : "Start Game"}
         </button>
       </div>
@@ -212,4 +217,4 @@ const BallDrop = () => {
   );
 };
 
-export { BallDrop };
+export default BallDrop;
