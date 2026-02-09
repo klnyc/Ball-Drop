@@ -79,7 +79,7 @@ const Canvas = () => {
           previousBasket && {
             ...previousBasket,
             x: mouseX - basketWidthOffset,
-          }
+          },
       );
     };
 
@@ -88,8 +88,6 @@ const Canvas = () => {
   };
 
   const updateGame = (): void => {
-    console.log("update game", gameStart);
-
     setBall((previousBall) => ({
       ...previousBall,
       y: previousBall.y + previousBall.speed,
@@ -125,7 +123,6 @@ const Canvas = () => {
 
   const checkBall = (): void => {
     if (!canvas || !basket || !gameStart) return;
-    console.log("check ball");
 
     // if ball hits the basket
     if (
@@ -133,22 +130,18 @@ const Canvas = () => {
       ball.x >= basket.x &&
       ball.x <= basket.x + basket.width
     ) {
-      console.log("hits basket");
       setScore(score + 1);
       resetBall();
     }
 
     // if ball hits the ground
     if (ball.y >= canvas.height) {
-      console.log("you lose");
       setGameStart(false);
     }
   };
 
   const drawObjects = (): void => {
     if (!canvas || !context || !basket) return;
-    console.log("draw objects");
-
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.fillStyle = "beige";
     context.fillRect(basket.x, basket.y, basket.width, basket.height);
@@ -156,7 +149,6 @@ const Canvas = () => {
   };
 
   const startGame = (): void => {
-    console.log("start game");
     setScore(0);
     setTimer(0);
     setBall(initialBall);
@@ -179,12 +171,10 @@ const Canvas = () => {
     let intervalId: number;
     if (gameStart) {
       intervalId = setInterval(() => {
-        console.log("interval", timer);
         setTimer((prevTimer) => prevTimer + 1);
       }, 1000);
     }
     return () => {
-      console.log("interval cleared", timer);
       clearInterval(intervalId);
     };
   }, [gameStart, timer]);
@@ -194,7 +184,6 @@ const Canvas = () => {
       animationRequestId.current = requestAnimationFrame(updateGame);
     } else {
       if (animationRequestId.current) {
-        console.log("canceling request ID", animationRequestId.current);
         cancelAnimationFrame(animationRequestId.current);
         animationRequestId.current = null;
       }
