@@ -1,4 +1,5 @@
 @import "./common/common.css";
+@import "./Home/Home.css";
 @import "./BallDrop/BallDrop.css";
 @import "./Sudoku/Sudoku.css";
 
@@ -75,12 +76,4 @@ input[type="number"]::-webkit-outer-spin-button {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-.back-to-playbox-button {
-  color: var(--color-coral);
-}
-
-.how-to-play-button {
-  color: var(--color-coral);
 }

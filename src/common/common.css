@@ -1,3 +1,10 @@
+/* Buttons */
+
+.back-to-playbox-button,
+.how-to-play-button {
+  color: var(--color-coral);
+}
+
 /* Modal */
 
 .close-modal-button {

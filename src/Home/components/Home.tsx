@@ -1,4 +1,3 @@
-import "../Home.css";
 import { JSX } from "react";
 import { Link } from "react-router";
 
