@@ -1,14 +1,11 @@
 #sudoku-container {
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   color: white;
   text-align: center;
 }
 
 #sudoku-grid {
-  padding: 0px 30px 30px;
+  padding-bottom: 24px;
 }
 
 .sudoku-input:focus {
@@ -38,4 +35,11 @@
 
 #reset-sudoku-button {
   color: var(--color-coral);
+}
+
+@media only screen and (max-width: 720px) {
+  .sudoku-input {
+    width: 30px;
+    height: 30px;
+  }
 }
