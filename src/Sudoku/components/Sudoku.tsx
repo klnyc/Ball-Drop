@@ -85,12 +85,12 @@ const Sudoku = (): JSX.Element => {
           subgrids contain all of the digits from 1 to 9 exactly once. Do not
           enter any other characters, only numbers are accepted.
         </div>
-        <button id="reset-sudoku-button" onClick={reset}>
-          Reset
-        </button>
         <Link to="/">
           <button className="back-to-playbox-button">Back to Playbox</button>
         </Link>
+        <button id="reset-sudoku-button" onClick={reset}>
+          Reset
+        </button>
       </SudokuContext.Provider>
     </div>
   );
