@@ -79,12 +79,12 @@ const Sudoku = (): JSX.Element => {
       <SudokuContext.Provider value={sudokuContext}>
         <div id="sudoku-warning-message">{message}</div>
         <Grid />
-        <div id="sudoku-description">
+        {/* <div id="sudoku-description">
           Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
           with digits so that each column, each row, and each of the nine 3x3
           subgrids contain all of the digits from 1 to 9 exactly once. Do not
           enter any other characters, only numbers are accepted.
-        </div>
+        </div> */}
         <Link to="/">
           <button className="back-to-playbox-button">Back to Playbox</button>
         </Link>
