@@ -1,4 +1,3 @@
-import "../BallDrop.css";
 import { useRef, useEffect, useState, JSX } from "react";
 import { Link } from "react-router";
 import { getRandomNumber } from "../../utility";

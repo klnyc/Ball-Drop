@@ -1,3 +1,7 @@
+@import "./common/common.css";
+@import "./BallDrop/BallDrop.css";
+@import "./Sudoku/Sudoku.css";
+
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;
   line-height: 1.5;
@@ -42,11 +46,6 @@ button:hover {
   border-color: var(--color-purple);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -79,5 +78,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .back-to-playbox-button {
+  color: var(--color-coral);
+}
+
+.how-to-play-button {
   color: var(--color-coral);
 }

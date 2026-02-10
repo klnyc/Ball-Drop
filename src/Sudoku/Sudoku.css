@@ -48,4 +48,10 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  #reset-sudoku-button,
+  #sudoku-container .back-to-playbox-button,
+  #sudoku-container .how-to-play-button {
+    color: var(--color-purple);
+  }
 }

@@ -1,7 +1,7 @@
-import "../Sudoku.css";
 import { useState, createContext, Dispatch, SetStateAction, JSX } from "react";
 import { Link } from "react-router";
 import Grid from "./Grid";
+import Modal from "../../common/components/Modal";
 
 interface GridState {
   [row: number]: {
@@ -41,6 +41,12 @@ const Sudoku = (): JSX.Element => {
   const [grid, setGrid] = useState<GridState>();
   const [validCells, setValidCells] = useState<ValidCells>();
   const [message, setMessage] = useState<string>("");
+  const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
+
+  const sudokuDescription = `Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
+    with digits so that each column, each row, and each of the nine 3x3
+    subgrids contain all of the digits from 1 to 9 exactly once. Do not
+    enter any other characters, only numbers are accepted.`;
 
   const initializeGrid = (): void => {
     const defaultGrid: GridState = {};
@@ -79,18 +85,25 @@ const Sudoku = (): JSX.Element => {
       <SudokuContext.Provider value={sudokuContext}>
         <div id="sudoku-warning-message">{message}</div>
         <Grid />
-        {/* <div id="sudoku-description">
-          Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
-          with digits so that each column, each row, and each of the nine 3x3
-          subgrids contain all of the digits from 1 to 9 exactly once. Do not
-          enter any other characters, only numbers are accepted.
-        </div> */}
         <Link to="/">
           <button className="back-to-playbox-button">Back to Playbox</button>
         </Link>
         <button id="reset-sudoku-button" onClick={reset}>
           Reset
         </button>
+        <button
+          className="how-to-play-button"
+          onClick={() => setShowHowToPlayModal(true)}
+        >
+          How to play
+        </button>
+
+        {showHowToPlayModal && (
+          <Modal
+            text={sudokuDescription}
+            onClose={() => setShowHowToPlayModal(false)}
+          />
+        )}
       </SudokuContext.Provider>
     </div>
   );
