@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement, useContext, JSX } from "react";
+import { ChangeEvent, ReactElement, useContext } from "react";
 import { SudokuContext } from "./Sudoku";
 
 interface RowProps {
@@ -6,7 +6,7 @@ interface RowProps {
   handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Row = ({ row, handleChange }: RowProps): JSX.Element => {
+export const Row = ({ row, handleChange }: RowProps) => {
   const { grid, validCells } = useContext(SudokuContext);
 
   if (!validCells || !grid) return <></>;

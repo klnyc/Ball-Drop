@@ -2,6 +2,7 @@
 @import "./Home/Home.css";
 @import "./BallDrop/BallDrop.css";
 @import "./Sudoku/Sudoku.css";
+@import "./SecretWord/SecretWord.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;

@@ -1,4 +1,4 @@
-import { useState, createContext, Dispatch, SetStateAction, JSX } from "react";
+import { useState, createContext, Dispatch, SetStateAction } from "react";
 import { Link } from "react-router";
 import Grid from "./Grid";
 import Modal from "../../common/components/Modal";
@@ -37,13 +37,13 @@ const SudokuContext = createContext<SudokuContextType>({
   reset: () => {},
 });
 
-const Sudoku = (): JSX.Element => {
+const Sudoku = () => {
   const [grid, setGrid] = useState<GridState>();
   const [validCells, setValidCells] = useState<ValidCells>();
   const [message, setMessage] = useState<string>("");
   const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
 
-  const sudokuDescription = `Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
+  const gameDescription = `Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
     with digits so that each column, each row, and each of the nine 3x3
     subgrids contain all of the digits from 1 to 9 exactly once. Do not
     enter any other characters, only numbers are accepted.`;
@@ -100,7 +100,7 @@ const Sudoku = (): JSX.Element => {
 
         {showHowToPlayModal && (
           <Modal
-            text={sudokuDescription}
+            text={gameDescription}
             onClose={() => setShowHowToPlayModal(false)}
           />
         )}

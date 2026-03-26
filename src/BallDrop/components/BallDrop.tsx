@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, JSX } from "react";
+import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { getRandomNumber } from "../../utility";
 import { GameOverAlert } from "./GameOverAlert";
@@ -29,7 +29,7 @@ const initialBall: Ball = {
 const basketWidth = 100;
 const basketHeight = 10;
 
-const BallDrop = (): JSX.Element => {
+const BallDrop = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animationRequestId = useRef<number | null>(null);
   const [basket, setBasket] = useState<Basket>();

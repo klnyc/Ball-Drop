@@ -1,7 +1,6 @@
-import { JSX } from "react";
 import { Link } from "react-router";
 
-const Home = (): JSX.Element => {
+const Home = () => {
   return (
     <div id="home-container">
       <div id="playbox-title">Playbox</div>
@@ -10,6 +9,9 @@ const Home = (): JSX.Element => {
       </Link>
       <Link to="/sudoku" className="game-link">
         <button>Sudoku</button>
+      </Link>
+      <Link to="/secretword" className="game-link">
+        <button>Secret Word</button>
       </Link>
     </div>
   );

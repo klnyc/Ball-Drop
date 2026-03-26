@@ -1,8 +1,8 @@
-import { ChangeEvent, useEffect, useContext, JSX } from "react";
+import { ChangeEvent, useEffect, useContext } from "react";
 import { SudokuContext } from "./Sudoku";
 import { Row } from "./Row";
 
-const Grid = (): JSX.Element => {
+const Grid = () => {
   const {
     grid,
     setGrid,

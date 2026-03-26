@@ -1,4 +1,3 @@
-import { JSX } from "react";
 import { X } from "lucide-react";
 
 interface ModalProps {
@@ -6,7 +5,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const Modal = ({ text, onClose }: ModalProps): JSX.Element => {
+const Modal = ({ text, onClose }: ModalProps) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
