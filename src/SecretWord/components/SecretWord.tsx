@@ -80,14 +80,21 @@ const SecretWord = () => {
     isCorrectGuess ? setShowWinModal(true) : setShowLoseModal(true);
   };
 
+  const reset = () => {
+    loadSecretWord();
+    setWord("");
+    setWordGuesses([]);
+    setError("");
+  };
+
   return (
     <div id="secret-word-container">
       <div className="secret-word-text">
-        {loading ? "..." : "*".repeat(secretWord.length)}
+        {loading ? ". . ." : " * ".repeat(secretWord.length)}
       </div>
       <div className="secret-word-clues">
         <div>CLUES</div>
-        <div>{loading ? "..." : relatedWords.join(" ")}</div>
+        <div>{loading ? ". . ." : relatedWords.join(" ")}</div>
       </div>
       <div className="secret-word-error">{error || ""}</div>
       <div className="secret-word-guess-container">
@@ -113,6 +120,9 @@ const SecretWord = () => {
         <button type="submit">Add word</button>
         <button type="button" onClick={() => handleGuesses()}>
           Guess
+        </button>
+        <button type="button" onClick={() => reset()}>
+          Reset
         </button>
         <button type="button" onClick={() => setShowSecretModal(true)}>
           Reveal secret
