@@ -14,9 +14,6 @@ const SecretWord = () => {
   const [showSecretModal, setShowSecretModal] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
-
-  const gameDescription = `Add up to 10 words to guess at once to find the secret word.`;
 
   const loadSecretWord = async () => {
     setLoading(true);
@@ -98,18 +95,25 @@ const SecretWord = () => {
       </div>
       <div className="secret-word-error">{error || ""}</div>
       <div className="secret-word-guess-container">
-        {wordGuesses.map((word) => {
-          return (
-            <div key={word} className="secret-word-guess">
-              {word}
-              <Trash
-                size={12}
-                className="secret-word-delete-icon"
-                onClick={() => deleteWord(word)}
-              />
-            </div>
-          );
-        })}
+        {wordGuesses.length ? (
+          wordGuesses.map((word) => {
+            return (
+              <div key={word} className="secret-word-guess">
+                {word}
+                <Trash
+                  size={12}
+                  className="secret-word-delete-icon"
+                  onClick={() => deleteWord(word)}
+                />
+              </div>
+            );
+          })
+        ) : (
+          <div className="secret-word-guess-empty-state">
+            <div>The stars above represent the letters of the secret word.</div>
+            <div>Add up to 10 words to guess the secret word.</div>
+          </div>
+        )}
       </div>
       <form onSubmit={handleSubmit}>
         <input
@@ -132,19 +136,6 @@ const SecretWord = () => {
       <Link to="/">
         <button className="back-to-playbox-button">Back to Playbox</button>
       </Link>
-      <button
-        className="how-to-play-button"
-        onClick={() => setShowHowToPlayModal(true)}
-      >
-        How to play
-      </button>
-
-      {showHowToPlayModal && (
-        <Modal
-          text={gameDescription}
-          onClose={() => setShowHowToPlayModal(false)}
-        />
-      )}
 
       {showWinModal && (
         <Modal
