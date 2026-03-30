@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import { Link } from "react-router";
+import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { getRandomNumber } from "../../utility";
 import { GameOverAlert } from "./GameOverAlert";
 import { MouseTracker } from "./MouseTracker";
@@ -194,9 +194,7 @@ const BallDrop = () => {
     <div id="ball-drop-container">
       <canvas id="ball-drop-canvas" ref={canvasRef} />
       <div id="footer">
-        <Link to="/">
-          <button className="back-to-playbox-button">Back to Playbox</button>
-        </Link>
+        <BackToPlayboxButton />
         <MouseTracker />
         <div id="score" className="footer-item">
           Score: <span>{score}</span>
@@ -204,7 +202,11 @@ const BallDrop = () => {
         <div id="timer" className="footer-item">
           Timer: <span>{timer}s</span>
         </div>
-        <button id="start-ball-drop-button" onClick={startGame} disabled={gameStart}>
+        <button
+          id="start-ball-drop-button"
+          onClick={startGame}
+          disabled={gameStart}
+        >
           {gameStart ? "Game started!" : "Start Game"}
         </button>
       </div>

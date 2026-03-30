@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router";
 import { Trash } from "lucide-react";
 import Modal from "../../common/components/Modal";
 import { isRealWord, getSecretWord, getRelatedWords } from "../services";
+import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 
 const SecretWord = () => {
   const [secretWord, setSecretWord] = useState<string>("");
@@ -133,9 +133,7 @@ const SecretWord = () => {
         </button>
       </form>
 
-      <Link to="/">
-        <button className="back-to-playbox-button">Back to Playbox</button>
-      </Link>
+      <BackToPlayboxButton />
 
       {showWinModal && (
         <Modal

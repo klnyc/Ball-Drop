@@ -1,7 +1,7 @@
 import { useState, createContext, Dispatch, SetStateAction } from "react";
-import { Link } from "react-router";
 import Grid from "./Grid";
 import Modal from "../../common/components/Modal";
+import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 
 interface GridState {
   [row: number]: {
@@ -85,9 +85,7 @@ const Sudoku = () => {
       <SudokuContext.Provider value={sudokuContext}>
         <div id="sudoku-warning-message">{message}</div>
         <Grid />
-        <Link to="/">
-          <button className="back-to-playbox-button">Back to Playbox</button>
-        </Link>
+        <BackToPlayboxButton />
         <button id="reset-sudoku-button" onClick={reset}>
           Reset
         </button>
