@@ -43,10 +43,9 @@ const Sudoku = () => {
   const [message, setMessage] = useState<string>("");
   const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
 
-  const gameDescription = `Sudoku is a number-placement puzzle. The goal is to fill the 9x9 grid
-    with digits so that each column, each row, and each of the nine 3x3
-    subgrids contain all of the digits from 1 to 9 exactly once. Do not
-    enter any other characters, only numbers are accepted.`;
+  const gameDescription = `Sudoku is a number-placement puzzle. Fill the 9x9 grid
+    with numbers so that each column, each row, and each of the nine 3x3
+    subgrids contain all of the digits from 1 to 9 exactly once.`;
 
   const initializeGrid = (): void => {
     const defaultGrid: GridState = {};
