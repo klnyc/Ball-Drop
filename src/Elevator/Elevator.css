@@ -1,0 +1,76 @@
+#elevator-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+  padding: 24px;
+
+  --elevator-height: 60px; /* matches the floor height in Elevator component */
+  --elevator-floors: 9; /* matches the floor count in Elevator component */
+  --elevator-building-width: 160px;
+}
+
+#elevator-container .back-to-playbox-button {
+  color: var(--color-purple);
+}
+
+.building {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--elevator-height) * var(--elevator-floors));
+  width: var(--elevator-building-width);
+  border: 2px solid var(--color-black);
+}
+
+.building-floor {
+  border-bottom: 1px solid var(--color-black);
+  height: var(--elevator-height);
+  width: var(--elevator-building-width);
+  opacity: 0.5;
+}
+
+.building-floor:nth-last-child(1 of .building-floor) {
+  border-bottom: none;
+}
+
+.elevator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  height: var(--elevator-height);
+  width: var(--elevator-height);
+  background-color: var(--color-purple);
+  border: 1px solid var(--color-white);
+  opacity: 0.3;
+  transition: bottom 2s ease-in-out;
+}
+
+.elevator-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.elevator-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  width: var(--elevator-building-width);
+}
+
+.elevator-buttons button:hover {
+  border: 1px solid transparent;
+}
+
+.elevator-button-pressed {
+  color: var(--color-purple);
+}

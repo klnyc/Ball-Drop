@@ -13,6 +13,9 @@ const Home = () => {
       <Link to="/secretword" className="game-link">
         <button>Secret Word</button>
       </Link>
+      <Link to="/elevator" className="game-link">
+        <button>Elevator</button>
+      </Link>
     </div>
   );
 };
