@@ -10,9 +10,6 @@ const Home = () => {
       <Link to="/sudoku" className="game-link">
         <button>Sudoku</button>
       </Link>
-      <Link to="/secretword" className="game-link">
-        <button>Secret Word</button>
-      </Link>
       <Link to="/elevator" className="game-link">
         <button>Elevator</button>
       </Link>

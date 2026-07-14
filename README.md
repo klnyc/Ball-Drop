@@ -5,7 +5,7 @@ https://klnyc.github.io/Playbox/
 Available mini games:
 * Ball Drop
 * Sudoku
-* Secret Word
+* Elevator
 
 ## :hammer_and_pick: Technology Stack
 
