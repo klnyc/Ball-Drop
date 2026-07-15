@@ -1,19 +1,19 @@
-#ball-drop-container {
+.ball-drop-container {
   width: 100%;
   height: 100vh;
 }
 
-#ball-drop-canvas {
+.ball-drop-canvas {
   display: block;
   width: 100%;
   height: 100%;
 }
 
-#start-ball-drop-button {
+.start-ball-drop-button {
   color: var(--color-purple);
 }
 
-#footer {
+.footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -28,23 +28,23 @@
   padding: 8px;
 }
 
-#score span {
+.score span {
   color: var(--color-coral);
 }
 
-#timer span {
+.timer span {
   color: var(--color-purple);
 }
 
-#mouse-tracker {
+.mouse-tracker {
   display: inline-flex;
 }
 
-#mouse-tracker div {
+.mouse-tracker div {
   padding-right: 2px;
 }
 
-#mouse-tracker span {
+.mouse-tracker span {
   padding: 0 2px;
 }
 
@@ -56,7 +56,7 @@
   color: var(--color-purple);
 }
 
-#game-over-alert {
+.game-over-alert {
   position: absolute;
   left: 0;
   top: 40%;
@@ -82,7 +82,7 @@
 }
 
 @media only screen and (max-width: 720px) {
-  #mouse-tracker {
+  .mouse-tracker {
     display: none;
   }
 }

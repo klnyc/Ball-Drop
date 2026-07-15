@@ -31,7 +31,7 @@ const Elevator = () => {
   };
 
   return (
-    <div id="elevator-container">
+    <div className="elevator-container">
       <div className="building">
         {floors.map(() => (
           <div className="building-floor"></div>

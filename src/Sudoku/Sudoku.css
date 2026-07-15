@@ -1,10 +1,10 @@
-#sudoku-container {
+.sudoku-container {
   width: 100%;
   height: 100%;
   text-align: center;
 }
 
-#sudoku-grid {
+.sudoku-grid {
   padding-bottom: 24px;
 }
 
@@ -29,17 +29,17 @@
   background-color: var(--color-coral);
 }
 
-#sudoku-warning-message {
+.sudoku-warning-message {
   height: 30px;
   line-height: 30px;
   color: var(--color-black);
 }
 
-#sudoku-description {
+.sudoku-description {
   padding-bottom: 10px;
 }
 
-#reset-sudoku-button {
+.reset-sudoku-button {
   color: var(--color-coral);
 }
 
@@ -53,9 +53,9 @@
     box-sizing: border-box;
   }
 
-  #reset-sudoku-button,
-  #sudoku-container .back-to-playbox-button,
-  #sudoku-container .how-to-play-button {
+  .reset-sudoku-button,
+  .sudoku-container .back-to-playbox-button,
+  .sudoku-container .how-to-play-button {
     color: var(--color-purple);
   }
 }

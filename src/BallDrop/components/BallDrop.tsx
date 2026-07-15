@@ -191,19 +191,19 @@ const BallDrop = () => {
   }, [gameStart]);
 
   return (
-    <div id="ball-drop-container">
-      <canvas id="ball-drop-canvas" ref={canvasRef} />
-      <div id="footer">
+    <div className="ball-drop-container">
+      <canvas className="ball-drop-canvas" ref={canvasRef} />
+      <div className="footer">
         <BackToPlayboxButton />
         <MouseTracker />
-        <div id="score" className="footer-item">
+        <div className="score" className="footer-item">
           Score: <span>{score}</span>
         </div>
-        <div id="timer" className="footer-item">
+        <div className="timer" className="footer-item">
           Timer: <span>{timer}s</span>
         </div>
         <button
-          id="start-ball-drop-button"
+          className="start-ball-drop-button"
           onClick={startGame}
           disabled={gameStart}
         >

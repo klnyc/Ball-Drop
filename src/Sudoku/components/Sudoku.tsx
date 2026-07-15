@@ -80,12 +80,12 @@ const Sudoku = () => {
   };
 
   return (
-    <div id="sudoku-container">
+    <div className="sudoku-container">
       <SudokuContext.Provider value={sudokuContext}>
-        <div id="sudoku-warning-message">{message}</div>
+        <div className="sudoku-warning-message">{message}</div>
         <Grid />
         <BackToPlayboxButton />
-        <button id="reset-sudoku-button" onClick={reset}>
+        <button className="reset-sudoku-button" onClick={reset}>
           Reset
         </button>
         <button

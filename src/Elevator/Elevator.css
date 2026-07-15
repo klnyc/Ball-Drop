@@ -1,4 +1,4 @@
-#elevator-container {
+.elevator-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -12,7 +12,7 @@
   --elevator-building-width: 160px;
 }
 
-#elevator-container .back-to-playbox-button {
+.elevator-container .back-to-playbox-button {
   color: var(--color-purple);
 }
 

@@ -47,7 +47,7 @@ const FruitPop = () => {
   };
 
   return (
-    <div id="fruit-pop-container">
+    <div className="fruit-pop-container">
       <div className="fruit-pop-header">
         <div>Score: {score}</div>
         <div>Timer: {time}</div>

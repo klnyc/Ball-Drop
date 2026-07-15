@@ -92,7 +92,7 @@ const Grid = () => {
     rows.push(<Row row={row} handleChange={handleChange} key={row} />);
   }
 
-  return <div id="sudoku-grid">{rows}</div>;
+  return <div className="sudoku-grid">{rows}</div>;
 };
 
 export default Grid;

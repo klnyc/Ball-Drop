@@ -13,7 +13,7 @@ const GameOverAlert = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return isVisible ? <div id="game-over-alert">Game Over</div> : <></>;
+  return isVisible ? <div className="game-over-alert">Game Over</div> : <></>;
 };
 
 export { GameOverAlert };
