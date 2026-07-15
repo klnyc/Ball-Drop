@@ -196,10 +196,10 @@ const BallDrop = () => {
       <div className="footer">
         <BackToPlayboxButton />
         <MouseTracker />
-        <div className="score" className="footer-item">
+        <div className="ball-drop-score footer-item">
           Score: <span>{score}</span>
         </div>
-        <div className="timer" className="footer-item">
+        <div className="ball-drop-timer footer-item">
           Timer: <span>{timer}s</span>
         </div>
         <button

@@ -28,11 +28,11 @@
   padding: 8px;
 }
 
-.score span {
+.ball-drop-score span {
   color: var(--color-coral);
 }
 
-.timer span {
+.ball-drop-timer span {
   color: var(--color-purple);
 }
 

@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 
-const GameOverAlert = () => {
+interface GameOverAlertProps {
+  score: number;
+  fruitCount: number;
+}
+
+const GameOverAlert = ({ score, fruitCount }: GameOverAlertProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const duration = 2_000; // match CSS pulse animation duration
@@ -13,7 +18,11 @@ const GameOverAlert = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return isVisible ? <div className="game-over-alert">Game Over</div> : <></>;
+  return isVisible ? (
+    <div className="game-over-alert">{(score / fruitCount) * 100}%</div>
+  ) : (
+    <></>
+  );
 };
 
 export { GameOverAlert };
