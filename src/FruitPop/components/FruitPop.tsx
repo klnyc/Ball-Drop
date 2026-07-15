@@ -2,17 +2,21 @@ import { useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { GameOverAlert } from "./GameOverAlert";
 import icons from "./Icons";
+import Modal from "../../common/components/Modal";
 
 const FruitPop = () => {
   const gameTime = 10;
   const cellCount = 25;
   const cells = new Array(cellCount).fill(null);
 
+  const gameDescription = `Pop all the fruits before the timer runs out. Be careful not to touch the vegetables!`;
+
   const [score, setScore] = useState<number>(0);
   const [time, setTime] = useState<number>(gameTime);
   const [activeCellIndices, setActiveCellIndices] = useState<number[]>([]);
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [fruitCount, setFruitCount] = useState<number>(0);
+  const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
 
   useEffect(() => {
     if (!gameStart) return;
@@ -77,6 +81,12 @@ const FruitPop = () => {
       <div className="fruit-pop-footer">
         <BackToPlayboxButton />
         <button
+          className="how-to-play-button"
+          onClick={() => setShowHowToPlayModal(true)}
+        >
+          How to play
+        </button>
+        <button
           className="fruit-pop-start-button"
           onClick={startGame}
           disabled={gameStart}
@@ -84,6 +94,13 @@ const FruitPop = () => {
           {gameStart ? "Game started!" : "Start Game"}
         </button>
       </div>
+
+      {showHowToPlayModal && (
+        <Modal
+          text={gameDescription}
+          onClose={() => setShowHowToPlayModal(false)}
+        />
+      )}
 
       {!gameStart && time === 0 && (
         <GameOverAlert score={score} fruitCount={fruitCount} />

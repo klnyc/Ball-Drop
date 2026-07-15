@@ -9,6 +9,12 @@
   display: flex;
   justify-content: space-around;
   padding: 12px 0px;
+  width: 100%;
+}
+
+.fruit-pop-footer {
+  position: absolute;
+  bottom: 0;
 }
 
 .fruit-pop-grid {

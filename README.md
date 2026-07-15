@@ -6,6 +6,7 @@ Available mini games:
 * Ball Drop
 * Sudoku
 * Elevator
+* Fruit Pop
 
 ## :hammer_and_pick: Technology Stack
 
