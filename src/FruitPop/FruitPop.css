@@ -1,0 +1,31 @@
+#fruit-pop-container {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.fruit-pop-header,
+.fruit-pop-footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0px;
+}
+
+.fruit-pop-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  height: 300px;
+}
+
+.fruit-pop-cell-item {
+  display: none;
+}
+
+.fruit-pop-cell-item.active {
+  display: inline;
+}
+
+.fruit-pop-start-button {
+  color: var(--color-purple);
+}

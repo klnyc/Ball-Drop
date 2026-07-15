@@ -3,6 +3,7 @@
 @import "./BallDrop/BallDrop.css";
 @import "./Sudoku/Sudoku.css";
 @import "./Elevator/Elevator.css";
+@import "./FruitPop/FruitPop.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;
