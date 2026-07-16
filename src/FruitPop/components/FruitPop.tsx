@@ -10,12 +10,15 @@ const FruitPop = () => {
   const cellCount = 25;
   const cells = new Array(cellCount).fill(null);
   const gameDescription = `Pop all the fruits before the timer runs out. Be careful not to touch the vegetables!`;
+  const scoreUpdateFadeTime = 500;
 
   const [score, setScore] = useState<number>(0);
   const [time, setTime] = useState<number>(gameTime);
   const [activeCellIndices, setActiveCellIndices] = useState<number[]>([]);
   const [gameStart, setGameStart] = useState<boolean>(false);
   const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
+  const [showPlusOne, setShowPlusOne] = useState<boolean>(false);
+  const [showMinusOne, setShowMinusOne] = useState<boolean>(false);
 
   useEffect(() => {
     if (!gameStart) return;
@@ -45,6 +48,18 @@ const FruitPop = () => {
   };
 
   const onFruitClick = (cellIndex: number, isFruit: boolean) => {
+    if (isFruit) {
+      setShowPlusOne(true);
+      setTimeout(() => {
+        setShowPlusOne(false);
+      }, scoreUpdateFadeTime);
+    } else {
+      setShowMinusOne(true);
+      setTimeout(() => {
+        setShowMinusOne(false);
+      }, scoreUpdateFadeTime);
+    }
+
     setScore((score) => (isFruit ? score + 1 : score - 1));
     setActiveCellIndices(
       [...activeCellIndices].filter((index) => index !== cellIndex),
@@ -54,7 +69,14 @@ const FruitPop = () => {
   return (
     <div className="fruit-pop-container">
       <div className="fruit-pop-header">
-        <div>Score: {score}</div>
+        <div className="fruit-pop-score">
+          <div>Score: {score}</div>
+          <div
+            className={`fruit-pop-score-update ${showPlusOne ? "plus" : showMinusOne ? "minus" : "hidden"}`}
+          >
+            {`${showPlusOne ? "+1" : showMinusOne ? "-1" : ""}`}
+          </div>
+        </div>
         <div>Timer: {time}s</div>
         <MouseTracker />
       </div>

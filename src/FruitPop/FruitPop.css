@@ -6,13 +6,18 @@
 
 .fruit-pop-header,
 .fruit-pop-footer {
-  display: flex;
-  justify-content: space-around;
   padding: 12px 0px;
   width: 100%;
 }
 
+.fruit-pop-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .fruit-pop-footer {
+  display: flex;
+  justify-content: space-around;
   position: absolute;
   bottom: 0;
 }
@@ -35,6 +40,25 @@
 
 .fruit-pop-start-button {
   color: var(--color-purple);
+}
+
+.fruit-pop-score {
+  display: flex;
+  justify-content: center;
+}
+
+.fruit-pop-score-update {
+  transition: 0.5s;
+  width: 20px;
+  padding-left: 8px;
+}
+
+.fruit-pop-score-update.plus {
+  color: var(--color-purple);
+}
+
+.fruit-pop-score-update.minus {
+  color: var(--color-white);
 }
 
 /* Mouse tracker */
