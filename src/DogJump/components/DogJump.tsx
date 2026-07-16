@@ -293,7 +293,7 @@ const DogJump = () => {
 
         ctx.save();
         ctx.font = `${cloud.size}px Arial`;
-        ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+        ctx.fillStyle = colors.white;
         ctx.textAlign = "left";
         ctx.textBaseline = "top";
         ctx.fillText("☁️", cloud.x, cloud.y);
@@ -311,7 +311,7 @@ const DogJump = () => {
       }
 
       ctx.save();
-      ctx.fillStyle = "#8B4513";
+      ctx.fillStyle = "transparent";
       ctx.fillRect(
         0,
         canvas.height - GROUND_HEIGHT,
@@ -542,9 +542,13 @@ const DogJump = () => {
       if (!ctx) return;
       const state = gameRef.current;
 
+      // sets canvas dimensions to its parent container
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#8B4513";
+      ctx.fillStyle = "transparent";
       ctx.fillRect(
         0,
         canvas.height - GROUND_HEIGHT,
@@ -569,359 +573,85 @@ const DogJump = () => {
   }, [gameState, resetGame]);
 
   return (
-    <div className="game-wrapper">
-      <style>{`
-        .game-wrapper {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 100vh;
-          background: linear-gradient(to bottom, #bae6fd 0%, #e0e7ff 100%);
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-          padding: 16px;
-          box-sizing: border-box;
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: none;
-        }
+    <div className="dog-jump-container">
+      <canvas
+        ref={canvasRef}
+        className="dog-jump-canvas"
+        width={800}
+        height={400}
+      />
 
-        .game-wrapper * {
-          box-sizing: border-box;
-        }
-
-        .game-frame {
-          position: relative;
-          width: 100%;
-          max-width: 800px;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-          border-radius: 16px;
-          overflow: hidden;
-          background: linear-gradient(to bottom, #38bdf8, #f0f9ff);
-          border: 4px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .game-canvas {
-          display: block;
-          width: 100%;
-          height: auto;
-          aspect-ratio: 2 / 1;
-          border-radius: 12px;
-        }
-
-        .screen-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(15, 23, 42, 0.45);
-          backdrop-filter: blur(2px);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 24px;
-          text-align: center;
-          z-index: 10;
-        }
-
-        .screen-overlay-dark {
-          background-color: rgba(2, 6, 23, 0.65);
-        }
-
-        .modal-card {
-          background-color: rgba(255, 255, 255, 0.95);
-          padding: 32px;
-          border-radius: 16px;
-          max-width: 440px;
-          width: 100%;
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-          border: 2px solid #4ade80;
-          transition: transform 0.2s ease;
-        }
-
-        .modal-card.gameover {
-          border-color: #ef4444;
-          animation: cardBounce 1s infinite alternate ease-in-out;
-        }
-
-        @keyframes cardBounce {
-          from { transform: translateY(0); }
-          to { transform: translateY(-8px); }
-        }
-
-        .title {
-          font-size: 2.25rem;
-          font-weight: 800;
-          color: #1e293b;
-          margin: 0 0 8px 0;
-          letter-spacing: -0.025em;
-        }
-
-        .title-red {
-          color: #dc2626;
-        }
-
-        .subtitle {
-          color: #475569;
-          font-size: 1rem;
-          margin: 0 0 24px 0;
-        }
-
-        .subtitle-caps {
-          text-transform: uppercase;
-          font-size: 0.75rem;
-          font-weight: 700;
-          letter-spacing: 0.05em;
-          color: #64748b;
-          margin: 0 0 16px 0;
-        }
-
-        .score-board {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          background-color: #f1f5f9;
-          padding: 12px 16px;
-          border-radius: 12px;
-          margin-bottom: 24px;
-        }
-
-        .score-col {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .score-label {
-          font-size: 0.75rem;
-          font-weight: 700;
-          color: #94a3b8;
-          text-transform: uppercase;
-          margin-bottom: 2px;
-        }
-
-        .score-val {
-          font-size: 1.5rem;
-          font-weight: 900;
-          color: #334155;
-        }
-
-        .score-val.high {
-          color: #f59e0b;
-        }
-
-        .score-divider {
-          width: 1px;
-          height: 32px;
-          background-color: #cbd5e1;
-        }
-
-        .btn {
-          display: inline-block;
-          width: 100%;
-          border: none;
-          font-weight: 700;
-          padding: 14px 28px;
-          font-size: 1.125rem;
-          border-radius: 12px;
-          cursor: pointer;
-          transition: all 0.2s ease;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-green {
-          background-color: #22c55e;
-          color: #ffffff;
-        }
-        .btn-green:hover {
-          background-color: #16a34a;
-        }
-
-        .btn-blue {
-          background-color: #3b82f6;
-          color: #ffffff;
-        }
-        .btn-blue:hover {
-          background-color: #2563eb;
-        }
-
-        .btn:active {
-          transform: scale(0.95);
-        }
-
-        .instructions-list {
-          margin-top: 24px;
-          display: flex;
-          flex-direction: column;
-          gap: 4px;
-          font-size: 0.75rem;
-          font-weight: 600;
-          color: #64748b;
-        }
-
-        .controls-footer {
-          margin-top: 24px;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 16px;
-          align-items: center;
-          justify-content: center;
-          max-width: 800px;
-          width: 100%;
-          padding: 0 16px;
-        }
-
-        .btn-control {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background-color: #ffffff;
-          border: 2px solid #cbd5e1;
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-size: 0.875rem;
-          font-weight: 700;
-          color: #475569;
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .btn-control:hover {
-          border-color: #94a3b8;
-        }
-
-        .btn-control.active-green {
-          background-color: #dcfce7;
-          border-color: #22c55e;
-          color: #15803d;
-        }
-
-        .btn-control.active-rose {
-          background-color: #ffe4e6;
-          border-color: #f43f5e;
-          color: #be123c;
-        }
-
-        .status-dot {
-          width: 8px;
-          height: 8px;
-          border-radius: 50%;
-          background-color: #94a3b8;
-        }
-
-        .status-dot.active {
-          background-color: #22c55e;
-        }
-
-        .score-badge {
-          background-color: rgba(30, 41, 59, 0.85);
-          color: #f8fafc;
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-size: 0.75rem;
-          font-weight: 600;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .score-badge span {
-          color: #fbbf24;
-          font-weight: 700;
-          font-size: 0.875rem;
-        }
-
-        .tip-text {
-          margin-top: 16px;
-          font-size: 0.75rem;
-          color: #64748b;
-          text-align: center;
-        }
-
-        .tip-text span {
-          font-weight: 700;
-          color: #475569;
-        }
-      `}</style>
-
-      <div className="game-frame">
-        <canvas
-          ref={canvasRef}
-          width={800}
-          height={400}
-          className="game-canvas"
-        />
-
-        {gameState === "START" && (
-          <div className="screen-overlay">
-            <div className="modal-card">
-              <h1 className="title">Super Dog Jump!</h1>
-              <p className="subtitle">
-                Leap over desert cactuses and safety barriers with agility.
-              </p>
-
-              <button onClick={startGame} className="btn btn-green">
-                Play Game
-              </button>
-
-              <div className="instructions-list">
-                <div>⚡ Space, Up Arrow, or Tap Screen to Jump</div>
-                <div>💫 Tap Twice to Double-Jump/Flip!</div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {gameState === "GAMEOVER" && (
-          <div className="screen-overlay screen-overlay-dark">
-            <div className="modal-card gameover">
-              <h1 className="title title-red">Game Over!</h1>
-              <p className="subtitle-caps">Run Completed</p>
-
-              <div className="score-board">
-                <div className="score-col">
-                  <span className="score-label">Score</span>
-                  <span className="score-val">{finalScore}</span>
-                </div>
-                <div className="score-divider" />
-                <div className="score-col">
-                  <span className="score-label">Best</span>
-                  <span className="score-val high">{highScore}</span>
-                </div>
-              </div>
-
-              <button onClick={startGame} className="btn btn-blue">
-                Try Again
-              </button>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="controls-footer">
+      <div className="dog-jump-footer">
         <button
           onClick={() => setDebugMode((prev) => !prev)}
-          className={`btn-control ${debugMode ? "active-green" : ""}`}
+          className={`dog-jump-button-control ${debugMode ? "active-green" : ""}`}
         >
-          <span className={`status-dot ${debugMode ? "active" : ""}`} />
+          <span
+            className={`dog-jump-button-status-dot ${debugMode ? "active" : ""}`}
+          />
           {debugMode ? "Hide Hitboxes" : "Show Hitboxes"}
         </button>
 
         <button
           onClick={() => setIsMuted((prev) => !prev)}
-          className={`btn-control ${isMuted ? "active-rose" : ""}`}
+          className={`dog-jump-button-control ${isMuted ? "active-rose" : ""}`}
         >
           <span>{isMuted ? "🔇 Audio Muted" : "🔊 Audio Active"}</span>
         </button>
 
-        <div className="score-badge">
+        <div className="dog-jump-score-badge">
           Best Score: <span>{highScore}</span>
+        </div>
+
+        <div className="dog-jump-tip-text">
+          Tip: Switch on <span>Show Hitboxes</span> to see the pixel-perfect
+          alignment in real time!
         </div>
       </div>
 
-      <div className="tip-text">
-        Tip: Switch on <span>Show Hitboxes</span> to see the pixel-perfect
-        alignment in real time!
-      </div>
+      {gameState === "START" && (
+        <div className="screen-overlay">
+          <div className="modal-card">
+            <h1 className="dog-jump-title">Dog Jump</h1>
+            <p className="dog-jump-subtitle">
+              Leap over desert cactuses and safety barriers with agility.
+            </p>
+
+            <button onClick={startGame} className="dog-jump-start-button">
+              Play Game
+            </button>
+
+            <div className="dog-jump-instructions">
+              <div>⚡ Space, Up Arrow, or Tap Screen to Jump</div>
+              <div>💫 Tap Twice to Double-Jump/Flip!</div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {gameState === "GAMEOVER" && (
+        <div className="screen-overlay screen-overlay-dark">
+          <div className="modal-card gameover">
+            <h1 className="dog-jump-title">Game Over!</h1>
+
+            <div className="dog-jump-score-board">
+              <div className="dog-jump-score-column">
+                <span className="dog-jump-score-label">Score</span>
+                <span className="dog-jump-score-value">{finalScore}</span>
+              </div>
+              <div className="dog-jump-score-divider" />
+              <div className="dog-jump-score-column">
+                <span className="dog-jump-score-label">Best</span>
+                <span className="dog-jump-score-value high">{highScore}</span>
+              </div>
+            </div>
+
+            <button onClick={startGame} className="dog-jump-try-again-button">
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

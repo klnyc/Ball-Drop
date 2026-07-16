@@ -51,8 +51,6 @@ const BallDrop = () => {
     // sets canvas dimensions to its parent container
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
-    context.fillStyle = "transparent";
-    context.fillRect(0, 0, canvas.width, canvas.height);
 
     const initialBasket: Basket = {
       x: canvas.width / 2,

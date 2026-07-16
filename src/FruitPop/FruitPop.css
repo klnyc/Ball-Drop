@@ -82,3 +82,9 @@
 .smaller-coordinate {
   color: var(--color-purple);
 }
+
+@media only screen and (max-width: 720px) {
+  .mouse-tracker {
+    display: none;
+  }
+}
