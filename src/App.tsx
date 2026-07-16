@@ -4,6 +4,7 @@ import BallDrop from "./BallDrop/components/BallDrop";
 import Sudoku from "./Sudoku/components/Sudoku";
 import Elevator from "./Elevator/components/Elevator";
 import FruitPop from "./FruitPop/components/FruitPop";
+import DogJump from "./DogJump/components/DogJump";
 
 const App = () => {
   return (
@@ -12,9 +13,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/balldrop" element={<BallDrop />} />
+          <Route path="/fruitpop" element={<FruitPop />} />
+          <Route path="/dogjump" element={<DogJump />} />
           <Route path="/sudoku" element={<Sudoku />} />
           <Route path="/elevator" element={<Elevator />} />
-          <Route path="/fruitpop" element={<FruitPop />} />
         </Routes>
       </HashRouter>
     </div>
