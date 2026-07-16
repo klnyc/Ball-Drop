@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { getRandomNumber } from "../../utility";
 import { GameOverAlert } from "./GameOverAlert";
-import { MouseTracker } from "./MouseTracker";
 import ballSvg from "../assets/pokeball.svg";
 
 interface Basket {
@@ -195,7 +194,6 @@ const BallDrop = () => {
       <canvas className="ball-drop-canvas" ref={canvasRef} />
       <div className="footer">
         <BackToPlayboxButton />
-        <MouseTracker />
         <div className="ball-drop-score footer-item">
           Score: <span>{score}</span>
         </div>

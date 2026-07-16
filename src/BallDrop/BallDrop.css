@@ -36,26 +36,6 @@
   color: var(--color-purple);
 }
 
-.mouse-tracker {
-  display: inline-flex;
-}
-
-.mouse-tracker div {
-  padding-right: 2px;
-}
-
-.mouse-tracker span {
-  padding: 0 2px;
-}
-
-.larger-coordinate {
-  color: var(--color-coral);
-}
-
-.smaller-coordinate {
-  color: var(--color-purple);
-}
-
 .game-over-alert {
   position: absolute;
   left: 0;

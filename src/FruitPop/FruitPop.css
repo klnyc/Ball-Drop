@@ -26,6 +26,7 @@
 
 .fruit-pop-cell-item {
   display: none;
+  cursor: pointer;
 }
 
 .fruit-pop-cell-item.active {
@@ -33,5 +34,27 @@
 }
 
 .fruit-pop-start-button {
+  color: var(--color-purple);
+}
+
+/* Mouse tracker */
+
+.mouse-tracker {
+  display: inline-flex;
+}
+
+.mouse-tracker div {
+  padding-right: 2px;
+}
+
+.mouse-tracker span {
+  padding: 0 2px;
+}
+
+.larger-coordinate {
+  color: var(--color-coral);
+}
+
+.smaller-coordinate {
   color: var(--color-purple);
 }

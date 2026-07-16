@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { GameOverAlert } from "./GameOverAlert";
+import { MouseTracker } from "./MouseTracker";
 import icons from "./Icons";
 import Modal from "../../common/components/Modal";
 
@@ -8,14 +9,12 @@ const FruitPop = () => {
   const gameTime = 10;
   const cellCount = 25;
   const cells = new Array(cellCount).fill(null);
-
   const gameDescription = `Pop all the fruits before the timer runs out. Be careful not to touch the vegetables!`;
 
   const [score, setScore] = useState<number>(0);
   const [time, setTime] = useState<number>(gameTime);
   const [activeCellIndices, setActiveCellIndices] = useState<number[]>([]);
   const [gameStart, setGameStart] = useState<boolean>(false);
-  const [fruitCount, setFruitCount] = useState<number>(0);
   const [showHowToPlayModal, setShowHowToPlayModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -43,11 +42,9 @@ const FruitPop = () => {
     setGameStart(true);
     setTime(gameTime);
     setScore(0);
-    setFruitCount(0);
   };
 
   const onFruitClick = (cellIndex: number, isFruit: boolean) => {
-    if (isFruit) setFruitCount((count) => count + 1);
     setScore((score) => (isFruit ? score + 1 : score - 1));
     setActiveCellIndices(
       [...activeCellIndices].filter((index) => index !== cellIndex),
@@ -58,7 +55,8 @@ const FruitPop = () => {
     <div className="fruit-pop-container">
       <div className="fruit-pop-header">
         <div>Score: {score}</div>
-        <div>Timer: {time}</div>
+        <div>Timer: {time}s</div>
+        <MouseTracker />
       </div>
 
       <div className="fruit-pop-grid">
@@ -102,9 +100,7 @@ const FruitPop = () => {
         />
       )}
 
-      {!gameStart && time === 0 && (
-        <GameOverAlert score={score} fruitCount={fruitCount} />
-      )}
+      {!gameStart && time === 0 && <GameOverAlert score={score} />}
     </div>
   );
 };

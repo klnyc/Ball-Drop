@@ -19,7 +19,7 @@ export const MouseTracker = () => {
   }, []);
 
   return (
-    <div className="mouse-tracker footer-item">
+    <div className="mouse-tracker">
       <div>Mouse coordinates:</div>
       <span className={isLargerX ? "larger-coordinate" : "smaller-coordinate"}>
         {x},
