@@ -613,9 +613,7 @@ const DogJump = () => {
         <div className="screen-overlay">
           <div className="modal-card">
             <h1 className="dog-jump-title">Dog Jump</h1>
-            <p className="dog-jump-subtitle">
-              Leap over desert cactuses and safety barriers with agility.
-            </p>
+            <p className="dog-jump-subtitle">Leap over the obstacles!</p>
 
             <button onClick={startGame} className="dog-jump-start-button">
               Play Game

@@ -43,6 +43,7 @@
 
 .modal-card {
   background-color: var(--color-white);
+  opacity: 0.95;
   padding: 32px;
   border-radius: 16px;
   max-width: 440px;
@@ -107,8 +108,8 @@
 }
 
 .dog-jump-score-value {
-  font-weight: 900;
   color: var(--color-black);
+  font-weight: 900;
 }
 
 .dog-jump-score-value.high {
@@ -118,7 +119,7 @@
 .dog-jump-score-divider {
   width: 1px;
   height: 32px;
-  background-color: var(--color-white);
+  background-color: var(--color-black);
 }
 
 .dog-jump-try-again-button {
@@ -212,4 +213,14 @@
 .dog-jump-tip-text span {
   font-weight: 700;
   color: var(--color-coral);
+}
+
+@media only screen and (max-width: 720px) {
+  .dog-jump-button-control,
+  .dog-jump-tip-text {
+    display: none;
+  }
+  .dog-jump-footer {
+    padding: 0 16px 8px;
+  }
 }
