@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { colors } from "../../common/contants";
+import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 
 interface Dog {
   x: number;
@@ -615,9 +616,14 @@ const DogJump = () => {
             <h1 className="dog-jump-title">Dog Jump</h1>
             <p className="dog-jump-subtitle">Leap over the obstacles!</p>
 
-            <button onClick={startGame} className="dog-jump-start-button">
-              Play Game
-            </button>
+            <div className="dog-jump-modal-buttons">
+              <div>
+                <button onClick={startGame} className="dog-jump-start-button">
+                  Play Game
+                </button>
+              </div>
+              <BackToPlayboxButton />
+            </div>
 
             <div className="dog-jump-instructions">
               <div>⚡ Space, Up Arrow, or Tap Screen to Jump</div>
@@ -647,6 +653,7 @@ const DogJump = () => {
             <button onClick={startGame} className="dog-jump-try-again-button">
               Try Again
             </button>
+            <BackToPlayboxButton />
           </div>
         </div>
       )}

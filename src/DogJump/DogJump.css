@@ -69,6 +69,12 @@
   }
 }
 
+.dog-jump-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .dog-jump-start-button {
   color: var(--color-purple);
 }
