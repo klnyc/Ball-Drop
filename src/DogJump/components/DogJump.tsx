@@ -53,7 +53,7 @@ interface GameStateRef {
 
 type GameMode = "START" | "PLAYING" | "GAMEOVER";
 
-const GROUND_HEIGHT = 60;
+const GROUND_HEIGHT = 100;
 const GRAVITY = 0.6; // Soft gravity for highly controllable double jumps
 const JUMP_STRENGTH = -11.5;
 const DOUBLE_JUMP_STRENGTH = -9.5;
@@ -74,6 +74,10 @@ const DogJump = () => {
     } catch {
       return 0;
     }
+  });
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
   });
 
   // Mutable state reference to maintain 60 FPS animation loop without state delays
@@ -543,10 +547,6 @@ const DogJump = () => {
       if (!ctx) return;
       const state = gameRef.current;
 
-      // sets canvas dimensions to its parent container
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "transparent";
@@ -573,13 +573,25 @@ const DogJump = () => {
     }
   }, [gameState, resetGame]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="dog-jump-container">
       <canvas
         ref={canvasRef}
         className="dog-jump-canvas"
-        width={800}
-        height={400}
+        width={dimensions.width}
+        height={dimensions.height}
       />
 
       <div className="dog-jump-footer">
