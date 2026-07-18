@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { ElevatorLogic, type ElevatorInterface } from "./ElevatorLogic";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
-import { ZapIcon } from "lucide-react";
 
 const Elevator = () => {
   const [displayFloor, setDisplayFloor] = useState<number>(1);
@@ -33,8 +32,8 @@ const Elevator = () => {
   return (
     <div className="elevator-container">
       <div className="building">
-        {floors.map(() => (
-          <div className="building-floor"></div>
+        {floors.map((_, index) => (
+          <div className="building-floor" key={index}></div>
         ))}
         <div
           className="elevator"
@@ -42,7 +41,7 @@ const Elevator = () => {
             bottom: (elevatorRef.current.currentFloor - 1) * floorHeight,
           }}
         >
-          <ZapIcon />
+          ⚡
         </div>
       </div>
       <div className="elevator-controls">

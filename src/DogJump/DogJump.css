@@ -19,55 +19,6 @@
   height: 100%;
 }
 
-.screen-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(2, 6, 23, 0.65);
-  backdrop-filter: blur(2px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-  z-index: 10;
-}
-
-.screen-overlay-dark {
-  background-color: rgba(2, 6, 23, 0.65);
-}
-
-.modal-card {
-  background-color: var(--color-white);
-  opacity: 0.95;
-  padding: 32px;
-  border-radius: 16px;
-  max-width: 440px;
-  width: 100%;
-  box-shadow:
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  border: 2px solid var(--color-purple);
-  transition: transform 0.2s ease;
-}
-
-.modal-card.gameover {
-  border-color: var(--color-purple);
-  animation: cardBounce 1s infinite alternate ease-in-out;
-}
-
-@keyframes cardBounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-8px);
-  }
-}
-
 .dog-jump-modal-buttons {
   display: flex;
   flex-direction: column;
@@ -78,14 +29,14 @@
   color: var(--color-purple);
 }
 
-.dog-jump-title {
+.modal-title {
   font-size: 2.25rem;
   font-weight: 800;
   color: var(--color-black);
   margin: 0 0 8px 0;
 }
 
-.dog-jump-subtitle {
+.modal-description {
   color: var(--color-black);
   margin: 0 0 24px 0;
 }
@@ -153,16 +104,20 @@
   padding: 0 16px;
 }
 
+.dog-jump-button-control,
+.dog-jump-score-badge {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 .dog-jump-button-control {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   background-color: var(--color-white);
   border: 2px solid var(--color-coral);
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 700;
   color: var(--color-black);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -195,11 +150,6 @@
   background-color: var(--color-black);
   border: 2px solid var(--color-coral);
   color: var(--color-white);
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .dog-jump-score-badge span {

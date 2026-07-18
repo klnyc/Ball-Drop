@@ -117,7 +117,8 @@ const FruitPop = () => {
 
       {showHowToPlayModal && (
         <Modal
-          text={gameDescription}
+          title="Fruit Pop"
+          description={gameDescription}
           onClose={() => setShowHowToPlayModal(false)}
         />
       )}

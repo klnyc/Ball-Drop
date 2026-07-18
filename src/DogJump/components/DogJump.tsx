@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { colors } from "../../common/contants";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
+import DogJumpFooter from "./DogJumpFooter";
+import Modal from "../../common/components/Modal";
 
 interface Dog {
   x: number;
@@ -53,7 +55,7 @@ interface GameStateRef {
 
 type GameMode = "START" | "PLAYING" | "GAMEOVER";
 
-const GROUND_HEIGHT = 100;
+const GROUND_HEIGHT = 90;
 const GRAVITY = 0.6; // Soft gravity for highly controllable double jumps
 const JUMP_STRENGTH = -11.5;
 const DOUBLE_JUMP_STRENGTH = -9.5;
@@ -594,80 +596,63 @@ const DogJump = () => {
         height={dimensions.height}
       />
 
-      <div className="dog-jump-footer">
-        <button
-          onClick={() => setDebugMode((prev) => !prev)}
-          className={`dog-jump-button-control ${debugMode ? "active-green" : ""}`}
-        >
-          <span
-            className={`dog-jump-button-status-dot ${debugMode ? "active" : ""}`}
-          />
-          {debugMode ? "Hide Hitboxes" : "Show Hitboxes"}
-        </button>
-
-        <button
-          onClick={() => setIsMuted((prev) => !prev)}
-          className={`dog-jump-button-control ${isMuted ? "active-rose" : ""}`}
-        >
-          <span>{isMuted ? "🔇 Audio Muted" : "🔊 Audio Active"}</span>
-        </button>
-
-        <div className="dog-jump-score-badge">
-          Best Score: <span>{highScore}</span>
-        </div>
-
-        <div className="dog-jump-tip-text">
-          Tip: Switch on <span>Show Hitboxes</span> to see the pixel-perfect
-          alignment in real time!
-        </div>
-      </div>
+      <DogJumpFooter
+        highScore={highScore}
+        debugMode={debugMode}
+        setDebugMode={setDebugMode}
+        isMuted={isMuted}
+        setIsMuted={setIsMuted}
+      />
 
       {gameState === "START" && (
-        <div className="screen-overlay">
-          <div className="modal-card">
-            <h1 className="dog-jump-title">Dog Jump</h1>
-            <p className="dog-jump-subtitle">Leap over the obstacles!</p>
-
-            <div className="dog-jump-modal-buttons">
-              <div>
-                <button onClick={startGame} className="dog-jump-start-button">
-                  Play Game
-                </button>
+        <Modal
+          title="Dog Jump"
+          description="Leap over the obstacles!"
+          content={
+            <>
+              <div className="dog-jump-modal-buttons">
+                <div>
+                  <button onClick={startGame} className="dog-jump-start-button">
+                    Play Game
+                  </button>
+                </div>
+                <BackToPlayboxButton />
               </div>
-              <BackToPlayboxButton />
-            </div>
 
-            <div className="dog-jump-instructions">
-              <div>⚡ Space, Up Arrow, or Tap Screen to Jump</div>
-              <div>💫 Tap Twice to Double-Jump/Flip!</div>
-            </div>
-          </div>
-        </div>
+              <div className="dog-jump-instructions">
+                <div>⚡ Space, Up Arrow, or Tap Screen to Jump</div>
+                <div>💫 Tap Twice to Double-Jump/Flip!</div>
+              </div>
+            </>
+          }
+        />
       )}
 
       {gameState === "GAMEOVER" && (
-        <div className="screen-overlay screen-overlay-dark">
-          <div className="modal-card gameover">
-            <h1 className="dog-jump-title">Game Over!</h1>
-
-            <div className="dog-jump-score-board">
-              <div className="dog-jump-score-column">
-                <span className="dog-jump-score-label">Score</span>
-                <span className="dog-jump-score-value">{finalScore}</span>
+        <Modal
+          title="Game Over!"
+          classNames="game-over"
+          content={
+            <>
+              <div className="dog-jump-score-board">
+                <div className="dog-jump-score-column">
+                  <span className="dog-jump-score-label">Score</span>
+                  <span className="dog-jump-score-value">{finalScore}</span>
+                </div>
+                <div className="dog-jump-score-divider" />
+                <div className="dog-jump-score-column">
+                  <span className="dog-jump-score-label">Best</span>
+                  <span className="dog-jump-score-value high">{highScore}</span>
+                </div>
               </div>
-              <div className="dog-jump-score-divider" />
-              <div className="dog-jump-score-column">
-                <span className="dog-jump-score-label">Best</span>
-                <span className="dog-jump-score-value high">{highScore}</span>
-              </div>
-            </div>
 
-            <button onClick={startGame} className="dog-jump-try-again-button">
-              Try Again
-            </button>
-            <BackToPlayboxButton />
-          </div>
-        </div>
+              <button onClick={startGame} className="dog-jump-try-again-button">
+                Try Again
+              </button>
+              <BackToPlayboxButton />
+            </>
+          }
+        />
       )}
     </div>
   );

@@ -97,7 +97,8 @@ const Sudoku = () => {
 
         {showHowToPlayModal && (
           <Modal
-            text={gameDescription}
+            title="Sudoku"
+            description={gameDescription}
             onClose={() => setShowHowToPlayModal(false)}
           />
         )}
