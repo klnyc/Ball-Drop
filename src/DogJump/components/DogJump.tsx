@@ -400,7 +400,7 @@ const DogJump = () => {
 
       if (debugMode) {
         ctx.save();
-        ctx.strokeStyle = colors.black;
+        ctx.strokeStyle = colors.purple;
         ctx.lineWidth = 2.5;
         ctx.strokeRect(dHit.x, dHit.y, dHit.w, dHit.h);
         ctx.fillStyle = "rgba(197, 45, 34, 0.15)";
@@ -445,7 +445,7 @@ const DogJump = () => {
 
         if (debugMode) {
           ctx.save();
-          ctx.strokeStyle = colors.black;
+          ctx.strokeStyle = colors.white;
           ctx.lineWidth = 2.5;
           ctx.strokeRect(oHit.x, oHit.y, oHit.w, oHit.h);
           ctx.fillStyle = "rgba(239, 68, 68, 0.15)";

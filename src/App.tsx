@@ -5,6 +5,7 @@ import Sudoku from "./Sudoku/components/Sudoku";
 import Elevator from "./Elevator/components/Elevator";
 import FruitPop from "./FruitPop/components/FruitPop";
 import DogJump from "./DogJump/components/DogJump";
+import ListBuilder from "./ListBuilder/components/ListBuilder";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="/dogjump" element={<DogJump />} />
           <Route path="/sudoku" element={<Sudoku />} />
           <Route path="/elevator" element={<Elevator />} />
+          <Route path="/listbuilder" element={<ListBuilder />} />
         </Routes>
       </HashRouter>
     </div>
