@@ -25,13 +25,8 @@
   padding-bottom: 32px;
 }
 
-.list-builder-container h1 svg {
-  height: 16px;
-  padding-left: 8px;
-}
-
 .list-builder-items {
-  height: 200px;
+  height: 160px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -42,15 +37,20 @@
   height: 24px;
 }
 
-.list-builder-items li svg {
-  height: 16px;
-  padding-left: 8px;
+.list-builder-delete-button svg {
   margin: -3px;
+}
+
+.list-builder-delete-button svg,
+.list-builder-edit-title-button svg {
+  height: 16px;
 }
 
 .list-builder-new-item-form {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .list-builder-new-item-input input {
