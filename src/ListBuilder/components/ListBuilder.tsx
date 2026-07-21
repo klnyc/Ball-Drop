@@ -1,8 +1,9 @@
 import { useState, type ChangeEvent, type KeyboardEvent } from "react";
 import { GameMode } from "../../common/contants";
-import Modal from "../../common/components/Modal";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { PlusIcon, CircleXIcon, SquarePenIcon } from "lucide-react";
+import CreateTitleModal from "./CreateTitleModal";
+import EditTitleModal from "./EditTitleModal";
 
 interface ListItem {
   id: number;
@@ -90,28 +91,12 @@ const ListBuilder = () => {
   return (
     <div className="list-builder-container">
       {gameState === "START" && (
-        <Modal
-          description="Create a name for your list."
-          content={
-            <form onSubmit={handleCreateList}>
-              <input
-                className="list-builder-create-list-input"
-                value={title}
-                onChange={handleTitleChange}
-                onKeyDown={handleTitleCreateKeyDown}
-              />
-              <div className="list-builder-input-error">{titleInputError}</div>
-              <div>
-                <BackToPlayboxButton />
-                <button
-                  className="list-builder-create-list-button"
-                  type="submit"
-                >
-                  Create List
-                </button>
-              </div>
-            </form>
-          }
+        <CreateTitleModal
+          title={title}
+          titleInputError={titleInputError}
+          handleCreateList={handleCreateList}
+          handleTitleChange={handleTitleChange}
+          handleTitleCreateKeyDown={handleTitleCreateKeyDown}
         />
       )}
 
@@ -171,30 +156,13 @@ const ListBuilder = () => {
           </div>
 
           {isEditTitleMode && (
-            <Modal
-              description="Edit the name for your list."
-              onClose={() => setEditTitleMode(false)}
-              content={
-                <form onSubmit={handleEditTitle}>
-                  <input
-                    className="list-builder-create-list-input"
-                    value={title}
-                    onChange={handleTitleChange}
-                    onKeyDown={handleTitleEditKeyDown}
-                  />
-                  <div className="list-builder-input-error">
-                    {titleInputError}
-                  </div>
-                  <div>
-                    <button
-                      className="list-builder-create-list-button"
-                      type="submit"
-                    >
-                      Edit
-                    </button>
-                  </div>
-                </form>
-              }
+            <EditTitleModal
+              title={title}
+              titleInputError={titleInputError}
+              setEditTitleMode={setEditTitleMode}
+              handleEditTitle={handleEditTitle}
+              handleTitleChange={handleTitleChange}
+              handleTitleEditKeyDown={handleTitleEditKeyDown}
             />
           )}
         </div>
