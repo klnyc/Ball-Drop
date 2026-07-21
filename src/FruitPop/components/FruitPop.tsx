@@ -101,7 +101,7 @@ const FruitPop = () => {
       <div className="fruit-pop-footer">
         <BackToPlayboxButton />
         <button
-          className="how-to-play-button"
+          className="how-to-play-button coral"
           onClick={() => setShowHowToPlayModal(true)}
         >
           How to play

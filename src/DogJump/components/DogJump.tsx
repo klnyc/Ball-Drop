@@ -3,6 +3,7 @@ import { colors } from "../../common/contants";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import DogJumpFooter from "./DogJumpFooter";
 import Modal from "../../common/components/Modal";
+import { GameMode } from "../../common/contants";
 
 interface Dog {
   x: number;
@@ -52,8 +53,6 @@ interface GameStateRef {
   animationId: number | null;
   dog: Dog;
 }
-
-type GameMode = "START" | "PLAYING" | "GAMEOVER";
 
 const GROUND_HEIGHT = 90;
 const GRAVITY = 0.6; // Soft gravity for highly controllable double jumps

@@ -5,6 +5,7 @@
 @import "./Elevator/Elevator.css";
 @import "./FruitPop/FruitPop.css";
 @import "./DogJump/DogJump.css";
+@import "./ListBuilder/ListBuilder.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;

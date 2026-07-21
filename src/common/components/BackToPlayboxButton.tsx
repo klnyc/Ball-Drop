@@ -1,9 +1,15 @@
 import { Link } from "react-router";
 
-const BackToPlayboxButton = () => {
+interface BackToPlayboxButtonProps {
+  color?: "purple" | "coral";
+}
+
+const BackToPlayboxButton = ({ color = "coral" }: BackToPlayboxButtonProps) => {
   return (
     <Link to="/">
-      <button className="back-to-playbox-button">Back to Playbox</button>
+      <button className={`back-to-playbox-button ${color}`}>
+        Back to Playbox
+      </button>
     </Link>
   );
 };

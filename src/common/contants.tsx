@@ -5,3 +5,5 @@ export const colors = {
   purple: "#646cff",
   coral: "lightcoral",
 };
+
+export type GameMode = "START" | "PLAYING" | "GAMEOVER";

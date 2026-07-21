@@ -84,12 +84,12 @@ const Sudoku = () => {
       <SudokuContext.Provider value={sudokuContext}>
         <div className="sudoku-warning-message">{message}</div>
         <Grid />
-        <BackToPlayboxButton />
+        <BackToPlayboxButton/>
         <button className="reset-sudoku-button" onClick={reset}>
           Reset
         </button>
         <button
-          className="how-to-play-button"
+          className="how-to-play-button coral"
           onClick={() => setShowHowToPlayModal(true)}
         >
           How to play

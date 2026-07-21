@@ -1,8 +1,13 @@
 /* Buttons */
 
-.back-to-playbox-button,
-.how-to-play-button {
+.back-to-playbox-button.coral,
+.how-to-play-button.coral {
   color: var(--color-coral);
+}
+
+.back-to-playbox-button.purple,
+.how-to-play-button.purple {
+  color: var(--color-purple);
 }
 
 /* Modal */

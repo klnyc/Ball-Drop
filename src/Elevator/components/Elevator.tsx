@@ -61,7 +61,7 @@ const Elevator = () => {
             </button>
           ))}
         </div>
-        <BackToPlayboxButton />
+        <BackToPlayboxButton color="purple" />
       </div>
     </div>
   );

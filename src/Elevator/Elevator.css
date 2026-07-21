@@ -12,10 +12,6 @@
   --elevator-building-width: 160px;
 }
 
-.elevator-container .back-to-playbox-button {
-  color: var(--color-purple);
-}
-
 .building {
   position: relative;
   display: flex;
