@@ -10,7 +10,7 @@ interface ListItem {
   item: string;
 }
 
-const ListBuilder = () => {
+const Lister = () => {
   const [gameState, setGameState] = useState<GameMode>("START");
   const [title, setTitle] = useState<string>("");
   const [titleInputError, setTitleInputError] = useState<string>("");
@@ -89,7 +89,7 @@ const ListBuilder = () => {
   };
 
   return (
-    <div className="list-builder-container">
+    <div className="lister-container">
       {gameState === "START" && (
         <CreateTitleModal
           title={title}
@@ -106,7 +106,7 @@ const ListBuilder = () => {
             {title}
             {isEditMode && (
               <button
-                className="list-builder-edit-title-button"
+                className="lister-edit-title-button"
                 onClick={() => setEditTitleMode(true)}
               >
                 <SquarePenIcon />
@@ -114,14 +114,14 @@ const ListBuilder = () => {
             )}
           </h1>
           {list.length > 0 && (
-            <div className="list-builder-items">
+            <div className="lister-items">
               {list.map((listItem) => {
                 return (
                   <li key={listItem.id}>
                     {listItem.item}
                     {isEditMode && (
                       <button
-                        className="list-builder-delete-button"
+                        className="lister-delete-button"
                         onClick={() => handleDeleteItem(listItem.id)}
                       >
                         <CircleXIcon />
@@ -132,8 +132,8 @@ const ListBuilder = () => {
               })}
             </div>
           )}
-          <form className="list-builder-new-item-form" onSubmit={handleAddItem}>
-            <div className="list-builder-new-item-input">
+          <form className="lister-new-item-form" onSubmit={handleAddItem}>
+            <div className="lister-new-item-input">
               <input
                 value={newItem?.item}
                 onChange={handleItemInput}
@@ -143,12 +143,12 @@ const ListBuilder = () => {
                 <PlusIcon />
               </button>
             </div>
-            <div className="list-builder-input-error">{newItemError}</div>
+            <div className="lister-input-error">{newItemError}</div>
           </form>
-          <div className="list-builder-footer">
+          <div className="lister-footer">
             <BackToPlayboxButton />
             <button
-              className="list-builder-edit-button"
+              className="lister-edit-button"
               onClick={() => setEditMode(!isEditMode)}
             >
               Edit
@@ -171,4 +171,4 @@ const ListBuilder = () => {
   );
 };
 
-export default ListBuilder;
+export default Lister;

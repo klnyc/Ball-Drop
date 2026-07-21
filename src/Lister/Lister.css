@@ -1,13 +1,13 @@
-.list-builder-container {
+.lister-container {
   padding: 32px;
 }
 
-.list-builder-container h1 {
+.lister-container h1 {
   margin: 0;
   padding-bottom: 32px;
 }
 
-.list-builder-create-list-input {
+.lister-create-list-input {
   outline: none;
   border: none;
   border-bottom: 1px solid var(--color-purple);
@@ -16,16 +16,16 @@
   padding: 8px;
 }
 
-.list-builder-create-list-button {
+.lister-create-list-button {
   color: var(--color-purple);
 }
 
-.list-builder-input-error {
+.lister-input-error {
   height: 24px;
   padding: 8px 0;
 }
 
-.list-builder-items {
+.lister-items {
   height: 160px;
   display: flex;
   flex-direction: column;
@@ -33,30 +33,30 @@
   gap: 8px;
 }
 
-.list-builder-items li {
+.lister-items li {
   height: 24px;
 }
 
-.list-builder-delete-button svg {
+.lister-delete-button svg {
   margin: -3px;
 }
 
-.list-builder-delete-button svg,
-.list-builder-edit-title-button svg {
+.lister-delete-button svg,
+.lister-edit-title-button svg {
   height: 16px;
 }
 
-.list-builder-delete-button,
-.list-builder-edit-title-button {
+.lister-delete-button,
+.lister-edit-title-button {
   padding: 0 8px;
 }
 
-.list-builder-delete-button:hover,
-.list-builder-edit-title-button:hover {
+.lister-delete-button:hover,
+.lister-edit-title-button:hover {
   border-color: transparent;
 }
 
-.list-builder-new-item-form {
+.lister-new-item-form {
   position: absolute;
   left: 0;
   right: 0;
@@ -67,7 +67,7 @@
   align-items: center;
 }
 
-.list-builder-new-item-input input {
+.lister-new-item-input input {
   font-size: 32px;
   outline: none;
   border: none;
@@ -77,7 +77,7 @@
   width: 200px;
 }
 
-.list-builder-footer {
+.lister-footer {
   position: absolute;
   bottom: 8px;
   left: 0;
@@ -86,6 +86,6 @@
   justify-content: center;
 }
 
-.list-builder-edit-button {
+.lister-edit-button {
   color: var(--color-coral);
 }

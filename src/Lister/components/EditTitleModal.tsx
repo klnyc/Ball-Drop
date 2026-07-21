@@ -25,15 +25,15 @@ const EditTitleModal = ({
       content={
         <form onSubmit={handleEditTitle}>
           <input
-            className="list-builder-create-list-input"
+            className="lister-create-list-input"
             value={title}
             onChange={handleTitleChange}
             onKeyDown={handleTitleEditKeyDown}
           />
-          <div className="list-builder-input-error">{titleInputError}</div>
+          <div className="lister-input-error">{titleInputError}</div>
           <div>
-            <button className="list-builder-create-list-button" type="submit">
-              Edit
+            <button className="lister-create-list-button" type="submit">
+              Save
             </button>
           </div>
         </form>

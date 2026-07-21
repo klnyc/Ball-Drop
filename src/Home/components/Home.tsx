@@ -20,8 +20,8 @@ const Home = () => {
         <Link to="/elevator" className="game-link">
           <button>Elevator</button>
         </Link>
-        <Link to="/listbuilder" className="game-link">
-          <button>List Builder</button>
+        <Link to="/lister" className="game-link">
+          <button>Lister</button>
         </Link>
       </div>
     </div>

@@ -23,15 +23,15 @@ const CreateTitleModal = ({
       content={
         <form onSubmit={handleCreateList}>
           <input
-            className="list-builder-create-list-input"
+            className="lister-create-list-input"
             value={title}
             onChange={handleTitleChange}
             onKeyDown={handleTitleCreateKeyDown}
           />
-          <div className="list-builder-input-error">{titleInputError}</div>
+          <div className="lister-input-error">{titleInputError}</div>
           <div>
             <BackToPlayboxButton />
-            <button className="list-builder-create-list-button" type="submit">
+            <button className="lister-create-list-button" type="submit">
               Create List
             </button>
           </div>
