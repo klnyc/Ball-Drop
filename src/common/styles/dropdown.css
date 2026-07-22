@@ -1,0 +1,28 @@
+.dropdown-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  display: none;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE/Legacy Edge */
+}
+
+.dropdown-button {
+  color: var(--color-black);
+  font-weight: 900;
+}

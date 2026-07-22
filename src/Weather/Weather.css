@@ -1,0 +1,10 @@
+.weather-container {
+  min-height: 100vh;
+}
+
+.weather-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 24px;
+}

@@ -1,0 +1,27 @@
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 8px;
+  margin: 0 8px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  color: var(--color-white);
+  letter-spacing: 1px;
+}
+
+button:hover {
+  border-color: var(--color-purple);
+}
+
+.back-to-playbox-button.coral,
+.how-to-play-button.coral {
+  color: var(--color-coral);
+}
+
+.back-to-playbox-button.purple,
+.how-to-play-button.purple {
+  color: var(--color-purple);
+}

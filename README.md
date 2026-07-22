@@ -2,13 +2,7 @@
 
 https://klnyc.github.io/Playbox/
 
-Available mini games:
-
-- Dog Jump
-- Ball Drop
-- Fruit Pop
-- Sudoku
-- Elevator
+Collection of mini games and applications.
 
 ## :hammer_and_pick: Technology Stack
 

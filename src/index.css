@@ -1,4 +1,4 @@
-@import "./common/common.css";
+@import "./common/styles/common.css";
 @import "./Home/Home.css";
 @import "./BallDrop/BallDrop.css";
 @import "./Sudoku/Sudoku.css";
@@ -6,6 +6,7 @@
 @import "./FruitPop/FruitPop.css";
 @import "./DogJump/DogJump.css";
 @import "./Lister/Lister.css";
+@import "./Weather/Weather.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;
@@ -32,24 +33,6 @@ body,
 
 body {
   margin: 0;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 8px;
-  margin: 0 8px;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: transparent;
-  cursor: pointer;
-  transition: border-color 0.25s;
-  color: var(--color-white);
-  letter-spacing: 1px;
-}
-
-button:hover {
-  border-color: var(--color-purple);
 }
 
 input[type="number"]::-webkit-inner-spin-button,
