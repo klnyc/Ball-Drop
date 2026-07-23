@@ -34,9 +34,8 @@
 
 .weather-error {
   position: absolute;
+  left: 37px;
   bottom: -24px;
-  text-align: center;
-  width: 100%;
   color: var(--color-purple);
   text-transform: uppercase;
   font-size: 10px;
