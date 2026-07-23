@@ -17,7 +17,7 @@ const CitySearchInput = ({
   error,
 }: CitySearchInputProps) => {
   return (
-    <div className="weather-search-input">
+    <div className="weather-search-input weather-header-item">
       <input
         value={cityInput}
         onChange={handleCityInputChange}

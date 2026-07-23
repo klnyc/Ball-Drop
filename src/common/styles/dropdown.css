@@ -3,6 +3,7 @@
   flex-direction: column;
   position: relative;
   width: 200px;
+  margin: 0 auto;
 }
 
 .dropdown-menu {

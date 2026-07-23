@@ -107,12 +107,16 @@ const Weather = () => {
   return (
     <div className="weather-container">
       <div className="weather-header">
-        <BackToPlayboxButton color="purple" />
-        <Dropdown
-          items={cityMenuItems}
-          selectedItem={selectedCity}
-          setSelectedItem={setSelectedCity}
-        />
+        <div className="weather-header-item">
+          <BackToPlayboxButton color="purple" />
+        </div>
+        <div className="weather-header-item">
+          <Dropdown
+            items={cityMenuItems}
+            selectedItem={selectedCity}
+            setSelectedItem={setSelectedCity}
+          />
+        </div>
         <CitySearchInput
           cityInput={cityInput}
           handleCityInputChange={handleCityInputChange}

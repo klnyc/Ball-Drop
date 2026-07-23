@@ -9,6 +9,10 @@
   padding: 24px;
 }
 
+.weather-header-item {
+  flex: 1;
+}
+
 .weather-search-input {
   display: inline-flex;
   position: relative;
@@ -64,4 +68,15 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   padding: 24px;
+}
+
+@media only screen and (max-width: 720px) {
+  .weather-header {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .weather-header-item {
+    margin: 0 auto;
+  }
 }
