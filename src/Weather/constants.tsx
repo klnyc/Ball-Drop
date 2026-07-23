@@ -9,6 +9,19 @@ import {
   CloudFog,
 } from "lucide-react";
 
+export interface City {
+  name: string;
+  temperature: number;
+  feelsLike: number;
+  low: number;
+  high: number;
+  humidity: number;
+  description: string;
+  weather: string;
+  windSpeed: number;
+  icon: string;
+}
+
 export const cities: string[] = [
   "New York",
   "Shanghai",

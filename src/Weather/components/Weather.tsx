@@ -1,34 +1,29 @@
-import { useEffect, useState } from "react";
+import {
+  type KeyboardEvent,
+  type ChangeEvent,
+  useEffect,
+  useState,
+} from "react";
+import { type City, cities, weatherIcons } from "../constants";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import Loader from "../../common/components/Loader";
 import Dropdown from "../../common/components/Dropdown";
 import { fetchWeather } from "../services";
-import KeyValuePair from "../../common/components/KeyValuePair";
-import { cities, weatherIcons } from "../constants";
-
-interface City {
-  name: string;
-  temperature: number;
-  feelsLike: number;
-  low: number;
-  high: number;
-  humidity: number;
-  description: string;
-  weather: string;
-  windSpeed: number;
-  icon: string;
-}
+import CityDetails from "./CityDetails";
+import CitySearchInput from "./CitySearchInput";
 
 const Weather = () => {
   const [selectedCity, setSelectedCity] = useState<string>("Tokyo");
   const [citiesData, setCitiesData] = useState<City[]>([]);
   const [cityDetails, setCityDetails] = useState<City | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [cityInput, setCityInput] = useState<string>("");
+  const [citySearchError, setCitySearchError] = useState<boolean>(false);
 
   const cityMenuItems = cities.map((city) => ({ name: city }));
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCitiesData = async () => {
       const fetchPromises = cities.map((city) => {
         const promise = fetchWeather(city);
         return promise;
@@ -51,9 +46,13 @@ const Weather = () => {
       setCitiesData(data);
     };
 
-    setIsLoading(true);
-    fetchData();
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      fetchCitiesData();
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   }, []);
 
   useEffect(() => {
@@ -62,6 +61,48 @@ const Weather = () => {
       setCityDetails(data);
     }
   }, [selectedCity, citiesData]);
+
+  const handleSearchCity = async () => {
+    if (cityInput.trim()) {
+      try {
+        const city = await fetchWeather(cityInput);
+        const data = {
+          name: city.name,
+          temperature: Math.round(city.main.temp),
+          feelsLike: Math.round(city.main.feels_like),
+          low: Math.round(city.main.temp_min),
+          high: Math.round(city.main.temp_max),
+          humidity: Math.round(city.main.humidity),
+          description: city.weather[0].description,
+          weather: city.weather[0].main,
+          windSpeed: Math.round(city.wind.speed),
+          icon: city.weather[0].icon.slice(0, -1),
+        };
+        setCitiesData([...citiesData, data]);
+        setSelectedCity(data.name);
+        setCityInput("");
+        setCitySearchError(false);
+      } catch (error) {
+        setCitySearchError(true);
+      }
+    }
+  };
+
+  const handleCityInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCityInput(event.target.value);
+    if (!event.target.value) {
+      setCitySearchError(false);
+    }
+  };
+
+  const handleSearchCityOnKeyPress = async (
+    event: KeyboardEvent<HTMLInputElement>,
+  ) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearchCity();
+    }
+  };
 
   return (
     <div className="weather-container">
@@ -72,9 +113,13 @@ const Weather = () => {
           selectedItem={selectedCity}
           setSelectedItem={setSelectedCity}
         />
-        <div className="weather-search-input">
-          <input />
-        </div>
+        <CitySearchInput
+          cityInput={cityInput}
+          handleCityInputChange={handleCityInputChange}
+          handleSearchCityOnKeyPress={handleSearchCityOnKeyPress}
+          handleSearchCity={handleSearchCity}
+          error={citySearchError}
+        />
       </div>
       <div className="weather-body">
         <div className="weather-detail">
@@ -90,26 +135,7 @@ const Weather = () => {
                   {cityDetails.description}
                 </div>
               </div>
-              <div className="city-detail-key-values">
-                <KeyValuePair
-                  keyString="Temperature"
-                  value={`${cityDetails.temperature}`}
-                />
-                <KeyValuePair
-                  keyString="Feels like"
-                  value={`${cityDetails.feelsLike}`}
-                />
-                <KeyValuePair keyString="High" value={`${cityDetails.high}`} />
-                <KeyValuePair keyString="Low" value={`${cityDetails.low}`} />
-                <KeyValuePair
-                  keyString="Humidity"
-                  value={`${cityDetails.humidity}`}
-                />
-                <KeyValuePair
-                  keyString="Wind speed"
-                  value={`${cityDetails.windSpeed} mph`}
-                />
-              </div>
+              <CityDetails cityDetails={cityDetails} />
             </div>
           ) : (
             <></>
