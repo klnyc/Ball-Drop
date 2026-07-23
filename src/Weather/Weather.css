@@ -5,6 +5,42 @@
 .weather-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.weather-search-input input {
+  outline: none;
+  border-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  background-color: transparent;
+}
+
+.weather-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.city-detail-weather {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.city-detail-weather-icon {
+  margin: 0 auto;
+}
+
+.city-detail-description {
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.city-detail-key-values {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   padding: 24px;
 }

@@ -1,0 +1,15 @@
+.key-value-pair {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.keyString {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.valueString {
+  font-size: 12px;
+}
