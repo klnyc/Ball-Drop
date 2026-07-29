@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
 interface GameOverAlertProps {
-  score: number;
+  text: string;
 }
 
-const GameOverAlert = ({ score }: GameOverAlertProps) => {
+const FlashAlert = ({ text }: GameOverAlertProps) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
 
   const duration = 2_000; // match CSS pulse animation duration
-  const finalScore = score < 0 ? 0 : score;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,11 +17,7 @@ const GameOverAlert = ({ score }: GameOverAlertProps) => {
     return () => clearTimeout(timer);
   }, []);
 
-  return isVisible ? (
-    <div className="game-over-alert">Final score: {finalScore}</div>
-  ) : (
-    <></>
-  );
+  return isVisible ? <div className="flash-alert">{text}</div> : <></>;
 };
 
-export { GameOverAlert };
+export { FlashAlert };

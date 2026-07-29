@@ -35,28 +35,3 @@
 .ball-drop-timer span {
   color: var(--color-purple);
 }
-
-.game-over-alert {
-  position: absolute;
-  left: 0;
-  top: 40%;
-  right: 0;
-  margin-inline: auto;
-  width: fit-content;
-  color: var(--color-purple);
-  font-size: 40px;
-  opacity: 0.8;
-  animation: pulse 2s infinite ease-in-out;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}

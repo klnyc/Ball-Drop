@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
-import { GameOverAlert } from "./GameOverAlert";
+import { FlashAlert } from "../../common/components/FlashAlert";
 import { MouseTracker } from "./MouseTracker";
 import icons from "./Icons";
 import Modal from "../../common/components/Modal";
@@ -123,7 +123,9 @@ const FruitPop = () => {
         />
       )}
 
-      {!gameStart && time === 0 && <GameOverAlert score={score} />}
+      {!gameStart && time === 0 && (
+        <FlashAlert text={`Final score: ${score < 0 ? 0 : score}`} />
+      )}
     </div>
   );
 };

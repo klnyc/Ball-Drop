@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import { getRandomNumber } from "../../utility";
-import { GameOverAlert } from "./GameOverAlert";
+import { FlashAlert } from "../../common/components/FlashAlert";
 import ballSvg from "../assets/pokeball.svg";
 
 interface Basket {
@@ -208,7 +208,7 @@ const BallDrop = () => {
       </div>
 
       {/** ball.y starts at 0 on page load indicating the game has not started */}
-      {!gameStart && ball.y > 0 && <GameOverAlert />}
+      {!gameStart && ball.y > 0 && <FlashAlert text="Game Over" />}
     </div>
   );
 };
