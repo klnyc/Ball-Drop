@@ -29,6 +29,9 @@ const Home = () => {
         <Link to="/tripleconnect" className="game-link">
           <button>Triple Connect</button>
         </Link>
+        <Link to="/tabler" className="game-link">
+          <button>Tabler</button>
+        </Link>
       </div>
     </div>
   );

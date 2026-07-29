@@ -7,7 +7,7 @@ type TripleConnectCell = "X" | "O" | null;
 const TripleConnect = () => {
   const [isXTurn, setIsXTurn] = useState<boolean>(true);
   const [board, setBoard] = useState<TripleConnectCell[]>(Array(9).fill(null));
-  const [winner, setWinner] = useState<TripleConnectCell | undefined>();
+  const [winner, setWinner] = useState<TripleConnectCell>();
 
   const solutions: number[][] = [
     [0, 1, 2],
