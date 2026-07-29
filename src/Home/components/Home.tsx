@@ -26,6 +26,9 @@ const Home = () => {
         <Link to="/lister" className="game-link">
           <button>Lister</button>
         </Link>
+        <Link to="/tripleconnect" className="game-link">
+          <button>Triple Connect</button>
+        </Link>
       </div>
     </div>
   );
