@@ -32,6 +32,9 @@ const Home = () => {
         <Link to="/triplets" className="game-link">
           <button>Triplets</button>
         </Link>
+        <Link to="/throttle" className="game-link">
+          <button>Throttle</button>
+        </Link>
       </div>
     </div>
   );
