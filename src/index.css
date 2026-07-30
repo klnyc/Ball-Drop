@@ -8,6 +8,7 @@
 @import "./Lister/Lister.css";
 @import "./Weather/Weather.css";
 @import "./TripleConnect/TripleConnect.css";
+@import "./Tabler/Tabler.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;

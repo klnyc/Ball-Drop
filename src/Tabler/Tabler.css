@@ -1,0 +1,69 @@
+.tabler-container {
+  min-height: 100vh;
+}
+
+.tabler-header,
+.tabler-form {
+  padding: 16px;
+}
+
+.tabler-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.tabler-form-input {
+  display: inline-flex;
+}
+
+.tabler-form-input-label {
+  font-weight: 700;
+  width: 100px;
+}
+
+.tabler-form input {
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--color-black);
+  background-color: transparent;
+  width: 60px;
+  text-align: center;
+  outline: none;
+}
+
+.tabler-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: auto;
+  padding: 8px;
+}
+
+.tabler-table-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabler-table-body tr {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.tabler-table-body input {
+  width: 100px;
+  background-color: transparent;
+  border: 1px solid var(--color-white);
+  outline: none;
+  padding: 8px;
+}
+
+.tabler-error {
+  height: 20px;
+  color: var(--color-purple);
+}
