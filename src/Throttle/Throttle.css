@@ -12,6 +12,7 @@
 .throttle-timestamp-lists {
   display: flex;
   flex-direction: row;
+  gap: 8px;
   overflow-y: auto;
   font-size: 10px;
   width: 100%;
