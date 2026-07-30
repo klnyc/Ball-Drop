@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import Modal from "../../common/components/Modal";
 
-type TripleConnectCell = "X" | "O" | null;
+type TripletsCell = "X" | "O" | null;
 
-const TripleConnect = () => {
+const Triplets = () => {
   const [isXTurn, setIsXTurn] = useState<boolean>(true);
-  const [board, setBoard] = useState<TripleConnectCell[]>(Array(9).fill(null));
-  const [winner, setWinner] = useState<TripleConnectCell>();
+  const [board, setBoard] = useState<TripletsCell[]>(Array(9).fill(null));
+  const [winner, setWinner] = useState<TripletsCell>();
 
   const solutions: number[][] = [
     [0, 1, 2],
@@ -58,11 +58,11 @@ const TripleConnect = () => {
   };
 
   return (
-    <div className="triple-connect-container">
-      <div className="triple-connect-board">
+    <div className="triplets-container">
+      <div className="triplets-board">
         {board.map((cell, index) => (
           <button
-            className={`triple-connect-cell ${cell ? "clicked" : "unclicked"}`}
+            className={`triplets-cell ${cell ? "clicked" : "unclicked"}`}
             key={index}
             onClick={() => handleCellClick(index)}
           >
@@ -70,7 +70,7 @@ const TripleConnect = () => {
           </button>
         ))}
       </div>
-      <div className="triple-connect-footer">
+      <div className="triplets-footer">
         <BackToPlayboxButton />
       </div>
 
@@ -81,7 +81,7 @@ const TripleConnect = () => {
           content={
             <>
               <button
-                className="triple-connect-play-again-button"
+                className="triplets-play-again-button"
                 onClick={reset}
               >
                 Play again
@@ -95,4 +95,4 @@ const TripleConnect = () => {
   );
 };
 
-export default TripleConnect;
+export default Triplets;

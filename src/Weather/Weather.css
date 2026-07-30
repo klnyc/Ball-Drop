@@ -55,6 +55,7 @@
 
 .city-detail-weather-icon {
   margin: 0 auto;
+  color: var(--color-purple);
 }
 
 .city-detail-description {

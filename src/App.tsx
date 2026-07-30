@@ -7,8 +7,8 @@ import FruitPop from "./FruitPop/components/FruitPop";
 import DogJump from "./DogJump/components/DogJump";
 import Lister from "./Lister/components/Lister";
 import Weather from "./Weather/components/Weather";
-import TripleConnect from "./TripleConnect/components/TripleConnect";
 import Tabler from "./Tabler/components/Tabler";
+import Triplets from "./Triplets/components/Triplets";
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/elevator" element={<Elevator />} />
           <Route path="/lister" element={<Lister />} />
           <Route path="/weather" element={<Weather />} />
-          <Route path="/tripleconnect" element={<TripleConnect />} />
+          <Route path="/triplets" element={<Triplets />} />
           <Route path="/tabler" element={<Tabler />} />
         </Routes>
       </HashRouter>
