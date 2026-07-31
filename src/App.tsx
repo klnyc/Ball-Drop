@@ -10,6 +10,7 @@ import Weather from "./Weather/components/Weather";
 import Tabler from "./Tabler/components/Tabler";
 import Triplets from "./Triplets/components/Triplets";
 import Throttle from "./Throttle/components/Throttle";
+import Animals from "./Animals/components/Animals";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/triplets" element={<Triplets />} />
           <Route path="/tabler" element={<Tabler />} />
           <Route path="/throttle" element={<Throttle />} />
+          <Route path="/animals" element={<Animals />} />
         </Routes>
       </HashRouter>
     </div>

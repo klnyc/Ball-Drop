@@ -35,6 +35,9 @@ const Home = () => {
         <Link to="/throttle" className="game-link">
           <button>Throttle</button>
         </Link>
+        <Link to="/animals" className="game-link">
+          <button>Animals</button>
+        </Link>
       </div>
     </div>
   );

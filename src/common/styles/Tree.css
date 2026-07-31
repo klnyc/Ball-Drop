@@ -1,0 +1,10 @@
+.tree-category-name {
+  width: max-content;
+  padding: 2px 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.tree-children {
+  padding-left: 12px;
+}

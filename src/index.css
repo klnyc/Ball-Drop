@@ -10,6 +10,7 @@
 @import "./Triplets/Triplets.css";
 @import "./Tabler/Tabler.css";
 @import "./Throttle/Throttle.css";
+@import "./Animals/Animals.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;

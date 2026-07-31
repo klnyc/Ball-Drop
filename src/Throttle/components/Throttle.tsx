@@ -47,7 +47,7 @@ const Throttle = () => {
 
   return (
     <div className="throttle-container">
-      <BackToPlayboxButton />
+      <BackToPlayboxButton color="purple" />
       <div className="throttle-body">
         <h3>Throttle Simulator</h3>
         <p>
