@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { ChevronDownIcon, ChevronRightIcon } from "lucide-react";
 
 export interface TreeNode {
   name: string;
@@ -34,7 +35,16 @@ const Tree = ({ node }: TreeProps) => {
           if (isCategory) setIsOpen(!isOpen);
         }}
       >
-        {node.name}
+        {node.name + " "}
+        {isCategory ? (
+          isOpen ? (
+            <ChevronDownIcon size={10} />
+          ) : (
+            <ChevronRightIcon size={10} />
+          )
+        ) : (
+          ""
+        )}
       </div>
       {isCategory && isOpen && node.children && node.children.length > 0 && (
         <div className="tree-children">
