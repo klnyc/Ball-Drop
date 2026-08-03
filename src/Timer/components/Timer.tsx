@@ -20,7 +20,8 @@ const Timer = () => {
   const [minuteSelection, setMinuteSelection] = useState<string>("1");
   const [secondSelection, setSecondSelection] = useState<string>("0");
   const [timeLeft, setTimeLeft] = useState<number>(0);
-  const [initialTime, setInitialTime] = useState<number>(timeLeft);
+  const [initialTime, setInitialTime] = useState<number>(0);
+  const [intervalId, setIntervalId] = useState<number>();
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const minutes = Math.floor(timeLeft / 60);
@@ -39,11 +40,17 @@ const Timer = () => {
     return [...minutesItems].slice(1);
   }, []);
 
-  const startTimer = () => {
-    const seconds = Number(minuteSelection) * 60 + Number(secondSelection);
-    setTimeLeft(seconds);
-    setInitialTime(seconds);
-    setIsTimerOn(true);
+  const handleTimerClick = () => {
+    if (isTimerOn) {
+      setIsTimerOn(false);
+      clearInterval(intervalId);
+      setIntervalId(undefined);
+    } else {
+      const seconds = Number(minuteSelection) * 60 + Number(secondSelection);
+      setTimeLeft(seconds);
+      setInitialTime(seconds);
+      setIsTimerOn(true);
+    }
   };
 
   const playSound = useCallback(() => {
@@ -86,12 +93,12 @@ const Timer = () => {
   useEffect(() => {
     if (!isTimerOn) return;
 
-    const intervalId = setInterval(() => {
+    const timerIntervalId = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev === 0) {
           if (timerMode === "single") {
             setIsTimerOn(false);
-            clearInterval(intervalId);
+            clearInterval(timerIntervalId);
             return 0;
           } else {
             return initialTime;
@@ -101,7 +108,9 @@ const Timer = () => {
       });
     }, 1000);
 
-    return () => clearInterval(intervalId);
+    setIntervalId(timerIntervalId);
+
+    return () => clearInterval(timerIntervalId);
   }, [isTimerOn, timerMode]);
 
   useEffect(() => {
@@ -146,7 +155,9 @@ const Timer = () => {
         />
       </div>
       <div className="timer-selector-start-button">
-        <button onClick={() => startTimer()}>Start</button>
+        <button onClick={() => handleTimerClick()}>
+          {isTimerOn ? "Stop" : "Start"}
+        </button>
       </div>
       <div className="timer-display">{`${minuteDisplay}:${secondDisplay}`}</div>
       <div className="timer-progress-bar">
