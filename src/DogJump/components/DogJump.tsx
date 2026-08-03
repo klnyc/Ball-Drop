@@ -62,7 +62,7 @@ const INITIAL_SPEED = 5.5;
 
 const DogJump = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const [debugMode, setDebugMode] = useState<boolean>(false);
   const [isMuted, setIsMuted] = useState<boolean>(false);
   const [gameState, setGameState] = useState<GameMode>("START");
@@ -103,17 +103,17 @@ const DogJump = () => {
   });
 
   const initAudio = () => {
-    if (!audioCtxRef.current) {
+    if (!audioContextRef.current) {
       const AudioContextClass =
         window.AudioContext || (window as any).webkitAudioContext;
-      audioCtxRef.current = new AudioContextClass();
+      audioContextRef.current = new AudioContextClass();
     }
   };
 
   const playSound = (type: "jump" | "doublejump" | "crash" | "milestone") => {
     if (isMuted) return;
     initAudio();
-    const ctx = audioCtxRef.current;
+    const ctx = audioContextRef.current;
     if (!ctx || ctx.state === "suspended") return;
 
     const osc = ctx.createOscillator();
