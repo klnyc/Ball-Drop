@@ -1,3 +1,39 @@
 .timer-container {
   padding: 24px;
 }
+
+.timer-selectors {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 0;
+}
+
+.timer-selector {
+  flex: 1;
+}
+
+.timer-selector-label {
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+.timer-selector-start-button {
+  text-align: center;
+}
+
+.timer-selector-radio-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+
+.timer-selector-start-button {
+  padding: 16px 0;
+}
+
+.timer-display {
+  text-align: center;
+  font-size: 36px;
+  letter-spacing: 4px;
+}
