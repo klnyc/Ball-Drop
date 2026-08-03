@@ -37,7 +37,8 @@ const Timer = () => {
   }, []);
 
   const startTimer = () => {
-    setTimeLeft(Number(minuteSelection) * 60 + Number(secondSelection));
+    const seconds = Number(minuteSelection) * 60 + Number(secondSelection);
+    setTimeLeft(seconds);
     setIsTimerOn(true);
   };
 
@@ -80,19 +81,26 @@ const Timer = () => {
 
   useEffect(() => {
     if (!isTimerOn) return;
+
     const intervalId = setInterval(() => {
+      const initialTime = timeLeft;
+
       setTimeLeft((prev) => {
         if (prev === 0) {
-          setIsTimerOn(false);
-          clearInterval(intervalId);
-          return 0;
+          if (timerMode === "single") {
+            setIsTimerOn(false);
+            clearInterval(intervalId);
+            return 0;
+          } else {
+            return initialTime;
+          }
         }
         return prev - 1;
       });
     }, 1000);
 
     return () => clearInterval(intervalId);
-  }, [isTimerOn]);
+  }, [isTimerOn, timerMode]);
 
   useEffect(() => {
     if (isTimerOn && !timeLeft) {
