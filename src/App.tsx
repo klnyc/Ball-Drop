@@ -11,6 +11,7 @@ import Tabler from "./Tabler/components/Tabler";
 import Triplets from "./Triplets/components/Triplets";
 import Throttle from "./Throttle/components/Throttle";
 import Animals from "./Animals/components/Animals";
+import Timer from "./Timer/components/Timer";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/tabler" element={<Tabler />} />
           <Route path="/throttle" element={<Throttle />} />
           <Route path="/animals" element={<Animals />} />
+          <Route path="/timer" element={<Timer />} />
         </Routes>
       </HashRouter>
     </div>

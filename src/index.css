@@ -11,6 +11,7 @@
 @import "./Tabler/Tabler.css";
 @import "./Throttle/Throttle.css";
 @import "./Animals/Animals.css";
+@import "./Timer/Timer.css";
 
 :root {
   font-family: "Segoe UI", "Roboto", sans-serif;
