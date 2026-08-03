@@ -10,6 +10,7 @@ import {
 import BackToPlayboxButton from "../../common/components/BackToPlayboxButton";
 import Dropdown from "../../common/components/Dropdown";
 import Radio from "../../common/components/Radio";
+import { colors } from "../../common/contants";
 
 type TimerMode = "single" | "continuous";
 
@@ -19,12 +20,14 @@ const Timer = () => {
   const [minuteSelection, setMinuteSelection] = useState<string>("1");
   const [secondSelection, setSecondSelection] = useState<string>("0");
   const [timeLeft, setTimeLeft] = useState<number>(0);
+  const [initialTime, setInitialTime] = useState<number>(timeLeft);
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   const minuteDisplay = String(minutes).padStart(2, "0");
   const secondDisplay = String(seconds).padStart(2, "0");
+  const progressPercentage = (timeLeft / initialTime) * 100;
 
   const minutesItems = useMemo(() => {
     return Array(61)
@@ -39,6 +42,7 @@ const Timer = () => {
   const startTimer = () => {
     const seconds = Number(minuteSelection) * 60 + Number(secondSelection);
     setTimeLeft(seconds);
+    setInitialTime(seconds);
     setIsTimerOn(true);
   };
 
@@ -83,8 +87,6 @@ const Timer = () => {
     if (!isTimerOn) return;
 
     const intervalId = setInterval(() => {
-      const initialTime = timeLeft;
-
       setTimeLeft((prev) => {
         if (prev === 0) {
           if (timerMode === "single") {
@@ -103,7 +105,7 @@ const Timer = () => {
   }, [isTimerOn, timerMode]);
 
   useEffect(() => {
-    if (isTimerOn && !timeLeft) {
+    if (isTimerOn && timeLeft === 0) {
       playSound();
     }
   }, [isTimerOn, timeLeft]);
@@ -147,6 +149,17 @@ const Timer = () => {
         <button onClick={() => startTimer()}>Start</button>
       </div>
       <div className="timer-display">{`${minuteDisplay}:${secondDisplay}`}</div>
+      <div className="timer-progress-bar">
+        <div
+          style={{
+            height: "100%",
+            width: `${progressPercentage}%`,
+            backgroundColor:
+              progressPercentage < 20 ? colors.coral : colors.purple,
+            transition: timeLeft === initialTime ? "none" : "width 1s linear", // Smooth 1s linear transition going down, but instantly snaps back to 100% when resetting
+          }}
+        />
+      </div>
     </div>
   );
 };
