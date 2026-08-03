@@ -12,7 +12,7 @@ import Dropdown from "../../common/components/Dropdown";
 import Radio from "../../common/components/Radio";
 import { colors } from "../../common/contants";
 
-type TimerMode = "single" | "continuous";
+type TimerMode = "single" | "repeat";
 
 const Timer = () => {
   const [isTimerOn, setIsTimerOn] = useState<boolean>(false);
@@ -21,7 +21,7 @@ const Timer = () => {
   const [secondSelection, setSecondSelection] = useState<string>("0");
   const [timeLeft, setTimeLeft] = useState<number>(0);
   const [initialTime, setInitialTime] = useState<number>(0);
-  const [intervalId, setIntervalId] = useState<number>();
+  const intervalIdRef = useRef<number | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
 
   const minutes = Math.floor(timeLeft / 60);
@@ -43,8 +43,8 @@ const Timer = () => {
   const handleTimerClick = () => {
     if (isTimerOn) {
       setIsTimerOn(false);
-      clearInterval(intervalId);
-      setIntervalId(undefined);
+      if (intervalIdRef.current) clearInterval(intervalIdRef.current);
+      intervalIdRef.current = null;
     } else {
       const seconds = Number(minuteSelection) * 60 + Number(secondSelection);
       setTimeLeft(seconds);
@@ -93,12 +93,12 @@ const Timer = () => {
   useEffect(() => {
     if (!isTimerOn) return;
 
-    const timerIntervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev === 0) {
           if (timerMode === "single") {
             setIsTimerOn(false);
-            clearInterval(timerIntervalId);
+            clearInterval(intervalId);
             return 0;
           } else {
             return initialTime;
@@ -108,9 +108,8 @@ const Timer = () => {
       });
     }, 1000);
 
-    setIntervalId(timerIntervalId);
-
-    return () => clearInterval(timerIntervalId);
+    intervalIdRef.current = intervalId;
+    return () => clearInterval(intervalId);
   }, [isTimerOn, timerMode]);
 
   useEffect(() => {
@@ -148,8 +147,8 @@ const Timer = () => {
           setSelected={setTimerMode as Dispatch<SetStateAction<string>>}
         />
         <Radio
-          name="Continuous"
-          value="continuous"
+          name="Repeat"
+          value="repeat"
           selected={timerMode}
           setSelected={setTimerMode as Dispatch<SetStateAction<string>>}
         />
